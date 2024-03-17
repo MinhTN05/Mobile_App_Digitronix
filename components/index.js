@@ -5,5 +5,5 @@ import InputStyle from './inputStyle'
 export {
     SvgComponent,
     IconStyle,
-    InputStyle
+    InputStyle,
 }

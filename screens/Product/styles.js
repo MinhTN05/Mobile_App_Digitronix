@@ -1,72 +1,63 @@
-import { StyleSheet } from "react-native";
-import { COLORS } from "../../contains";
+import { StyleSheet } from 'react-native';
+import {COLORS} from '../../contains'
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'flex-start', // Đặt thanh tìm kiếm ở trên cùng màn hình
-        alignItems: 'center',
-        paddingTop: 50, // Khoảng cách từ trên cùng màn hình
-    },
-    box: {
-        width: '80%',
-        padding: 20,
-        marginVertical: 10,
-        backgroundColor: COLORS.primary,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    product: {
-        paddingHorizontal: 10,
-    },
-    productText: {
-        fontSize: 16,
-    },
-    productImage: {
-        width: 50,
-        height: 50,
-        marginRight: 10, // Khoảng cách giữa hình ảnh sản phẩm và văn bản sản phẩm
-    },
-    deleteIconContainer: {
-        padding: 5,
-    },
-    deleteIcon: {
-        width: 20,
-        height: 20,
-    },
-    imageContainer: {
-        position: 'absolute',
-        bottom: 20,
-        right: 20,
-    },
-    image: {
-        width: 50,
-        height: 50,
+        padding: 10,
     },
     searchContainer: {
-        flexDirection: 'row',
+        flexDirection: 'row', // Sắp xếp các phần tử theo chiều ngang
+        alignItems: 'center', // Căn giữa các phần tử theo chiều dọc
         marginBottom: 10,
-        width: '80%', // Để thanh tìm kiếm nhỏ lại
     },
     searchInput: {
-        flex: 1,
-        height: 40, // Đặt chiều cao của input nhỏ lại
+        flex: 1, // Đảm bảo TextInput sẽ chiếm hết phần còn lại của hàng
         borderWidth: 1,
-        borderColor: COLORS.primary,
+        borderColor: COLORS.black,
         borderRadius: 5,
-        paddingHorizontal: 10,
-    },
-    searchButton: {
-        backgroundColor: COLORS.primary,
-        borderRadius: 5,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 5,
+        padding: 10,
+        marginRight: 10, // Khoảng cách giữa TextInput và hình ảnh tìm kiếm
     },
     searchIcon: {
+        width: 24,
+        height: 24,
+        marginRight: 5, // Khoảng cách giữa hình ảnh tìm kiếm và TextInput
+    },
+    productContainer: {
+        backgroundColor: COLORS.yellow,
+        borderRadius: 10,
+        marginBottom: 10,
+    },
+    product: {
+        flexDirection: 'row',
+        padding: 10,
+        alignItems: 'center'
+    },
+    productImage: {
+        width: 100,
+        height: 100,
+        borderRadius: 10,
+        marginRight: 10,
+    },
+    productInfo: {
+        flex: 1,
+        justifyContent: 'center',
+    },
+    productName: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginBottom: 5,
+    },
+    productPrice: {
+        fontSize: 16,
+        color: 'green',
+    },
+    trashIcon: {
         width: 30,
         height: 30,
+        marginLeft : 'auto',
+        alignItems: 'center'
     },
 });
 
