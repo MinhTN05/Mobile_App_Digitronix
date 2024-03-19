@@ -8,8 +8,10 @@ const CategoryProductScreen = ({ route, navigation }) => {
     const [productDetails, setProductDetails] = useState(null);
 
     useEffect(() => {
-        ProductService.list({ id: id })
+        // Gọi hàm getProductDetail(id) từ ProductService khi thành phần được mount
+        ProductService.getProductDetail(id)
             .then(response => {
+                // Xử lý kết quả trả về, set thông tin chi tiết sản phẩm vào state
                 setProductDetails(response.data);
             })
             .catch(error => {
@@ -36,35 +38,35 @@ const CategoryProductScreen = ({ route, navigation }) => {
                             <Text style={styles.detailText}>{productDetails.id}</Text>
                         </View>
                         <View style={styles.productDetail}>
-                            <Text style={styles.detailLabel}>Tên sản phẩm:</Text>
+                            <Text style={styles.detailLabel}>Product Name:</Text>
                             <Text style={styles.detailText}>{productDetails.name}</Text>
                         </View>
                         <View style={styles.productDetail}>
-                            <Text style={styles.detailLabel}>Giá sản phẩm:</Text>
+                            <Text style={styles.detailLabel}>Product Price:</Text>
                             <Text style={styles.detailText}>{productDetails.price}</Text>
                         </View>
                         <View style={styles.productDetail}>
-                            <Text style={styles.detailLabel}>Ảnh sản phẩm:</Text>
+                            <Text style={styles.detailLabel}>Product Image:</Text>
                             <Image source={{ uri: productDetails.img }} style={styles.productImage} />
                         </View>
                         <View style={styles.productDetail}>
-                            <Text style={styles.detailLabel}>Số lượng sản phẩm:</Text>
+                            <Text style={styles.detailLabel}>Product Quantity:</Text>
                             <Text style={styles.detailText}>{productDetails.quantity}</Text>
                         </View>
                         <View style={styles.productDetail}>
-                            <Text style={styles.detailLabel}>Ngày tạo:</Text>
+                            <Text style={styles.detailLabel}>Created at:</Text>
                             <Text style={styles.detailText}>{productDetails.created_at}</Text>
                         </View>
                         <View style={styles.productDetail}>
-                            <Text style={styles.detailLabel}>Ngày cập nhật:</Text>
+                            <Text style={styles.detailLabel}>Updated at:</Text>
                             <Text style={styles.detailText}>{productDetails.updated_at}</Text>
                         </View>
                         <View style={styles.productDetail}>
-                            <Text style={styles.detailLabel}>ID danh mục:</Text>
+                            <Text style={styles.detailLabel}>ID Category:</Text>
                             <Text style={styles.detailText}>{productDetails.category_id}</Text>
                         </View>
                         <View style={styles.productDetail}>
-                            <Text style={styles.detailLabel}>ID danh mục:</Text>
+                            <Text style={styles.detailLabel}>Tags:</Text>
                             <Text style={styles.detailText}>{productDetails.tags}</Text>
                         </View>
                     </View>
