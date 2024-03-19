@@ -29,7 +29,9 @@ const styles = StyleSheet.create({
     },
     detailText: {
         flex: 1,
-        fontSize: 18, // Tăng kích thước chữ
+        fontSize: 18,
+        overflow: 'hidden', // Ẩn bất kỳ nội dung nào vượt ra khỏi khung hiển thị
+        textAlign: 'left', // Canh lề văn bản về phía trái
     },
     productImage: {
         width: 80, // Tăng kích thước hình ảnh

@@ -6,7 +6,8 @@ export const fetchAsyncLogin = createAsyncThunk(
     'auth/fetchAsyncLogin',
     async (data, thunkAPI) => {
         const respone = await AuthService.login(data)
-        return respone.data
+        const userData = respone.data;
+        return userData;
     }
 )
 
@@ -15,19 +16,22 @@ const authSlice = createSlice({
     initialState: {
         token: [],
         isLogin: false,
-        loginError: null
+        loginError: null,
+        username: null,
     },
     reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(fetchAsyncLogin.fulfilled, (state, action) => {
-                const { token } = action.payload;
+                const { token, username } = action.payload;
                 AsyncStorage.setItem('access_token', token);
+                AsyncStorage.setItem('username', username);
                 return {
                     ...state,
                     token : token,
                     isLogin: true,
-                    loginError: null 
+                    loginError: null,
+                    username: username
                 }
             })
             .addCase(fetchAsyncLogin.rejected, (state, action) => {
@@ -38,5 +42,3 @@ const authSlice = createSlice({
 
 export const { } = authSlice.actions
 export default authSlice.reducer
-
-

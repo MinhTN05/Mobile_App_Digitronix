@@ -28,6 +28,9 @@ const ProductScreen = () => {
         }
     }, [searchKeyword, dataProduct.products]);
 
+    console.log('dataProduct', dataProduct);
+    // console.log(items.img);
+
     const renderTrashIcon = () => {
         return (
             <TouchableOpacity onPress={() => console.log('Delete product')}>
@@ -44,9 +47,9 @@ const ProductScreen = () => {
         console.log('Search icon pressed');
     };
 
-    const handleProductPress = (productId) => {
+    const handleProductPress = (id) => {
         // Xử lý khi sản phẩm được bấm vào, có thể điều hướng đến trang chi tiết sản phẩm với productId
-        navigation.push('CategoryProductScreen', {productId});
+        navigation.push('CategoryProductScreen', { id: id });
     };
 
     return (
@@ -71,17 +74,17 @@ const ProductScreen = () => {
                     <TouchableOpacity onPress={() => handleProductPress(item.id)}>
                         <View style={styles.productContainer}>
                             <View style={styles.product}>
-                                <Image
-                                    source={{ uri: item.img }}
-                                    style={styles.productImage}
-                                />
                                 <View style={styles.productInfo}>
-                                    <Text style={styles.productName}>{item.name}</Text>
-                                    <Text style={styles.productPrice}>{item.price}</Text>
+                                    <Text style={styles.productName}>Name: {item.name}</Text>
+                                    <View style={styles.productPriceQuantityContainer}>
+                                        <Text style={styles.productPrice}>Price: {item.price}</Text>
+                                        <Text style={styles.productQuantity}>Quantity: {item.quantity}</Text>
+                                    </View>
                                 </View>
                                 {renderTrashIcon()}
                             </View>
                         </View>
+
                     </TouchableOpacity>
                 )}
                 keyExtractor={item => item.id.toString()}
