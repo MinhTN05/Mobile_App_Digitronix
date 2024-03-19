@@ -17,15 +17,18 @@ const styles = StyleSheet.create({
         width: 25,
         height: 25,
         marginRight: 20,
+        left: 40
       },
       username: {
         fontSize: 18,
+        left: 40,
         color : COLORS.white,
         
       },
       logoutButton: {
         flexDirection: 'row',
         alignItems: 'center',
+        left: 40
       },
       logoutIcon: {
         width: 25,

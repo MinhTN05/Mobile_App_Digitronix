@@ -24,10 +24,6 @@ const LoginScreen = () => {
     // })
 
     const handleLogin = async () => {
-
-        console.log("Username:", username); // In ra giá trị của username
-        console.log("Password:", password); // In ra giá trị của password
-
         try {
             const response = await dispatch(fetchAsyncLogin({ username, password }));
             const { token } = response.payload;

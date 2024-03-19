@@ -1,23 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { SetUserName } from '../../store/slices/username';
 
 import styles from "./styles";
-import { useSelector } from 'react-redux';
 
 const DrawerContent = (props) => {
 
     const {username} = useSelector((state) => state.usernameReducer)
+    const navigation = useNavigation();
+    const dispatch = useDispatch();
 
-    console.log("username", username);
-
-    const handleLogout = () => {
-        // Xử lý đăng xuất ở đây
+    const handleLogout = async () => {
+        try {
+            // Xóa token từ AsyncStorage
+            await AsyncStorage.removeItem('access_token');
+            // Xóa tên người dùng
+            dispatch(SetUserName(''));
+            navigation.navigate('AuthStackScreen');
+        } catch (error) {
+            console.error('Error logging out:', error);
+        }
     };
-
-    // if (!loaded) {
-    //     return null; // Hiển thị null nếu chưa load xong username
-    // }
 
     return (
         <View style={styles.container}>
@@ -28,7 +34,6 @@ const DrawerContent = (props) => {
                 />
                 <Text style={styles.username}>{username}</Text>
             </View>
-            {/* Phần dưới với nút Logout và hình ảnh logout */}
             <TouchableOpacity onPress={handleLogout} style={styles.logoutButton}>
                 <Image
                     source={require('../../assets/images/Logout.png')}
