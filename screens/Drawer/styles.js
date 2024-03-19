@@ -14,12 +14,12 @@ const styles = StyleSheet.create({
         marginBottom: 30,
       },
       accountIcon: {
-        width: 50,
-        height: 50,
+        width: 25,
+        height: 25,
         marginRight: 20,
       },
       username: {
-        fontSize: 22,
+        fontSize: 18,
         color : COLORS.white,
         
       },
@@ -28,13 +28,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
       },
       logoutIcon: {
-        width: 50,
-        height: 50,
+        width: 25,
+        height: 25,
         marginRight: 20,
         backgroundColor : COLORS.white,
       },
       logoutText: {
-        fontSize: 22, // Màu chữ Logout
+        fontSize: 18,
         color : COLORS.white,
       },
 })

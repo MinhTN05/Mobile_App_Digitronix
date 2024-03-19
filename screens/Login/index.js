@@ -9,6 +9,7 @@ import { fetchAsyncLogin } from '../../store/slices/auth'
 import { useDispatch } from 'react-redux'
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { SetUserName } from '../../store/slices/username';
 
 const LoginScreen = () => {
     const [showPass, setShowPass] = useState(true)
@@ -29,10 +30,11 @@ const LoginScreen = () => {
 
         try {
             const response = await dispatch(fetchAsyncLogin({ username, password }));
-            const { token, username: user } = response.payload;
+            const { token } = response.payload;
             await AsyncStorage.setItem('access_token', token);
-            await AsyncStorage.setItem('username', user);
-            navigation.navigate('MyTabs');
+            await dispatch(SetUserName(username)),
+
+                navigation.navigate('MyTabs');
         } catch (error) {
             alert('Đăng nhập thất bại');
         }

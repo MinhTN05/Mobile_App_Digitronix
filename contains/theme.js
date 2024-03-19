@@ -2,11 +2,13 @@ const COLORS = {
     background  : '#EFF7F8',
     primary     : '#0EAF89',
     second      : '#000000',
-    text        : '#000000',
+    text        : '#696969',
     icon        : '#DE5050',
-    
+
+    boder       : '#B87333',
+
     drawer      : '#293543',
-    yellow      : '#FFD700',
+    yellow      : '#e7b932',
     white       : '#FFFFFF',
     black       : '#000000',
     title       : '#5C5C5B',

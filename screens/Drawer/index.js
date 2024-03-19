@@ -3,44 +3,11 @@ import { View, Text, TouchableOpacity, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import styles from "./styles";
+import { useSelector } from 'react-redux';
 
 const DrawerContent = (props) => {
 
-    const [username, setUsername] = useState('');
-    const [loaded, setLoaded] = useState(false);
-
-    useEffect(() => {
-        const getUsername = async () => {
-            try {
-                const storedUsername = await AsyncStorage.getItem('username');
-                if (storedUsername) {
-                    setUsername(storedUsername);
-                }
-                setLoaded(true); // Đánh dấu là đã load xong username
-            } catch (error) {
-                console.log("Error retrieving username:", error);
-            }
-        };
-
-        getUsername();
-    }, []);
-
-    useEffect(() => {
-        const getUsername = async () => {
-            try {
-                const storedUsername = await AsyncStorage.getItem('username');
-                if (storedUsername) {
-                    setUsername(storedUsername);
-                }
-            } catch (error) {
-                console.log("Error retrieving username:", error);
-            }
-        };
-
-        if (loaded) {
-            getUsername();
-        }
-    }, [loaded]);
+    const {username} = useSelector((state) => state.usernameReducer)
 
     console.log("username", username);
 
@@ -48,9 +15,9 @@ const DrawerContent = (props) => {
         // Xử lý đăng xuất ở đây
     };
 
-    if (!loaded) {
-        return null; // Hiển thị null nếu chưa load xong username
-    }
+    // if (!loaded) {
+    //     return null; // Hiển thị null nếu chưa load xong username
+    // }
 
     return (
         <View style={styles.container}>
