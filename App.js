@@ -27,7 +27,11 @@ export default function App(props) {
           initialRouteName='AuthStackScreen'
         >
           <Drawer.Screen name="AuthStackScreen" component={AuthStackScreen} />
+          
           <Drawer.Screen name="MyTabs" component={MyTabs} />
+          <Drawer.Screen name="MyTabsWorker" component={MyTabsWorker} />
+          <Drawer.Screen name="MyTabsProduction" component={MyTabsProduction} />
+          <Drawer.Screen name="MyTabsDriver" component={MyTabsDriver} />
         </Drawer.Navigator>
       </NavigationContainer>
     </Provider>

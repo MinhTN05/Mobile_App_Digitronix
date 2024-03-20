@@ -4,16 +4,19 @@ import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
 import { fetchProduct } from '../../store/slices/product';
 import { useDispatch, useSelector } from 'react-redux';
+import { fetchRoles } from '../../store/slices/roles';
 
 const ProductScreen = () => {
     const navigation = useNavigation();
     const dispatch = useDispatch();
     const dataProduct = useSelector(state => state.Product.items);
+    const dataRoles = useSelector(state => state.Roles.items);
     const [searchKeyword, setSearchKeyword] = useState('');
     const [filteredProducts, setFilteredProducts] = useState([]);
 
     useEffect(() => {
-        dispatch(fetchProduct())
+        dispatch(fetchProduct());
+        dispatch(fetchRoles());
     }, [dispatch])
 
     useEffect(() => {
@@ -29,6 +32,7 @@ const ProductScreen = () => {
     }, [searchKeyword, dataProduct.products]);
 
     console.log('dataProduct', dataProduct);
+    console.log('dataRoles', dataRoles);
     // console.log(items.img);
 
     const renderTrashIcon = () => {

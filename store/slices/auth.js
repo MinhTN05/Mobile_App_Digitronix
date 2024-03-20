@@ -15,6 +15,7 @@ const authSlice = createSlice({
     name: 'Auth',
     initialState: {
         token: [],
+        roleId: null,
         isLogin: false,
         loginError: null,
         username: null,
@@ -23,12 +24,13 @@ const authSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchAsyncLogin.fulfilled, (state, action) => {
-                const { token, username } = action.payload;
+                const { token, username, roleId } = action.payload;
                 AsyncStorage.setItem('access_token', token);
                 AsyncStorage.setItem('username', username);
                 return {
                     ...state,
                     token : token,
+                    roleId: roleId,
                     isLogin: true,
                     loginError: null,
                     username: username
