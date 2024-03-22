@@ -34,8 +34,6 @@ const CategoryProductScreen = ({ route, navigation }) => {
         fetchAccessToken();
     }, [id]);
 
-    console.log(access_token)
-
     const navigateBack = () => {
         navigation.goBack();
     };
@@ -47,7 +45,13 @@ const CategoryProductScreen = ({ route, navigation }) => {
         <View style={styles.container}>
             {productDetails ? (
                 <>
-                    <Text style={styles.productTitle}>The detail information of product.</Text>
+                    {productDetails ? (
+                        <Image source={{
+                            uri: `${`http://localhost:1702/api/v1/products/images/${productDetails.img}`}`
+                        }} style={styles.image} />
+                    ) : (
+                        <Text>No image available</Text>
+                    )}
                     <View style={styles.detailContainer}>
                         <View style={styles.productDetail}>
                             <Text style={styles.detailLabel}>ID:</Text>
@@ -62,26 +66,16 @@ const CategoryProductScreen = ({ route, navigation }) => {
                             <Text style={styles.detailText}>{productDetails.price}</Text>
                         </View>
                         <View style={styles.productDetail}>
-                            <Text style={styles.detailLabel}>Product Image:</Text>
-                            {productDetails ? (
-                                <Image source={{
-                                    uri: `${`http://localhost:1702/api/v1/products/images/${productDetails.img}`}`
-                                }} style={styles.productImage} />
-                            ) : (
-                                <Text>No image available</Text>
-                            )}
-                        </View>
-                        <View style={styles.productDetail}>
                             <Text style={styles.detailLabel}>Product Quantity:</Text>
                             <Text style={styles.detailText}>{productDetails.quantity}</Text>
                         </View>
                         <View style={styles.productDetail}>
                             <Text style={styles.detailLabel}>Created at:</Text>
-                            <Text style={styles.detailText}>{productDetails.created_at}</Text>
+                            <Text style={styles.detailText}>{productDetails.created_at.split("T").join(" ")}</Text>
                         </View>
                         <View style={styles.productDetail}>
                             <Text style={styles.detailLabel}>Updated at:</Text>
-                            <Text style={styles.detailText}>{productDetails.updated_at}</Text>
+                            <Text style={styles.detailText}>{productDetails.updated_at.split("T").join(" ")}</Text>
                         </View>
                         <View style={styles.productDetail}>
                             <Text style={styles.detailLabel}>ID Category:</Text>

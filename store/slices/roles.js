@@ -22,7 +22,7 @@ const RolesSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchRoles.fulfilled, (state, action) => {
-                console.log('Roles fetched successfully:', action.payload);
+                //console.log('Roles fetched successfully:', action.payload);
                 state.items = action.payload;
             })
             .addCase(fetchRoles.rejected, (state, action) => {

@@ -67,6 +67,12 @@ const styles = StyleSheet.create({
         width: 20,
         height: 20,
     },
+    image: {
+        width: 200,
+        height: 200,
+        alignItems: 'center',
+        justifyContent: 'center',
+    }
 })
 
 export default styles;
