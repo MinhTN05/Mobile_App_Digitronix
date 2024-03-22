@@ -20,7 +20,6 @@ const ProductScreen = () => {
     }, [dispatch])
 
     useEffect(() => {
-        // Filter products based on search keyword
         if (searchKeyword.trim() === '') {
             setFilteredProducts(dataProduct.products);
         } else {
@@ -31,8 +30,8 @@ const ProductScreen = () => {
         }
     }, [searchKeyword, dataProduct.products]);
 
-    console.log('dataProduct', dataProduct);
-    console.log('dataRoles', dataRoles);
+    //console.log('dataProduct', dataProduct);
+    //console.log('dataRoles', dataRoles);
     // console.log(items.img);
 
     const renderTrashIcon = () => {

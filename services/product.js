@@ -14,7 +14,7 @@ const ProductService = {
         tags
     } = {}) {
         return AsyncStorage.getItem('access_token').then(token => {
-            return api.call().get(`products/all?page=0&limit=10`, {
+            return api.call().get(`products/all?page=0&limit=20`, {
                 params: {
                     id,
                     name,
@@ -40,7 +40,7 @@ const ProductService = {
                 }
             });
         });
-    }
+    },
 };
 
 export default ProductService;

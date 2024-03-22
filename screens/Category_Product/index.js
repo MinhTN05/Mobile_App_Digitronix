@@ -2,28 +2,44 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import styles from './styles';
 import ProductService from '../../services/product';
+import { useDispatch } from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const CategoryProductScreen = ({ route, navigation }) => {
     const { id } = route.params;
     const [productDetails, setProductDetails] = useState(null);
+    const [access_token, setAccessToken] = useState("")
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        // Gọi hàm getProductDetail(id) từ ProductService khi thành phần được mount
         ProductService.getProductDetail(id)
             .then(response => {
-                // Xử lý kết quả trả về, set thông tin chi tiết sản phẩm vào state
                 setProductDetails(response.data);
+
             })
             .catch(error => {
                 console.error('Error fetching product details:', error);
             });
+
+        const fetchAccessToken = async () => {
+            try {
+                const token = await AsyncStorage.getItem("access_token");
+                setAccessToken(token);
+            } catch (error) {
+                console.error('Error fetching access token:', error);
+            }
+        }
+
+        fetchAccessToken();
     }, [id]);
+
+    console.log(access_token)
 
     const navigateBack = () => {
         navigation.goBack();
     };
     const navigateToEdit = () => {
-        // Điều hướng đến trang chỉnh sửa sản phẩm
         navigation.navigate('EditProductScreen', { productId: id });
     };
 
@@ -31,7 +47,7 @@ const CategoryProductScreen = ({ route, navigation }) => {
         <View style={styles.container}>
             {productDetails ? (
                 <>
-                    <Text style={styles.productTitle}>Thông tin chi tiết sản phẩm</Text>
+                    <Text style={styles.productTitle}>The detail information of product.</Text>
                     <View style={styles.detailContainer}>
                         <View style={styles.productDetail}>
                             <Text style={styles.detailLabel}>ID:</Text>
@@ -47,7 +63,13 @@ const CategoryProductScreen = ({ route, navigation }) => {
                         </View>
                         <View style={styles.productDetail}>
                             <Text style={styles.detailLabel}>Product Image:</Text>
-                            <Image source={{ uri: productDetails.img }} style={styles.productImage} />
+                            {productDetails ? (
+                                <Image source={{
+                                    uri: `${`http://localhost:1702/api/v1/products/images/${productDetails.img}`}`
+                                }} style={styles.productImage} />
+                            ) : (
+                                <Text>No image available</Text>
+                            )}
                         </View>
                         <View style={styles.productDetail}>
                             <Text style={styles.detailLabel}>Product Quantity:</Text>
