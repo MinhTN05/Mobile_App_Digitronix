@@ -15,7 +15,6 @@ import DriverDetailsScreen from "./Driver_Details";
 import DriverchedulesScreen from "./Driver_Schedules";
 
 import LoginScreen from "./Login";
-import SignUpScreen from "./SignUp";
 
 import EditProductScreen from "./Edit_Product";
 import EditSuppliesScreen from "./Edit_Supplies";
@@ -36,7 +35,6 @@ export {
     DriverDetailsScreen,
     DriverchedulesScreen,
     LoginScreen,
-    SignUpScreen,
     DrawerContent,
     EditProductScreen,
     EditSuppliesScreen,

@@ -4,9 +4,7 @@ const COLORS = {
     second      : '#000000',
     text        : '#696969',
     icon        : '#DE5050',
-
     boder       : '#B87333',
-
     drawer      : '#293543',
     yellow      : '#e7b932',
     white       : '#FFFFFF',

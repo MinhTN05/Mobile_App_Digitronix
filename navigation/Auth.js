@@ -2,7 +2,7 @@ import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
-import { SignUpScreen , LoginScreen } from '../screens'
+import { LoginScreen } from '../screens'
 
 function AuthStackScreen() {
   return (
@@ -12,7 +12,6 @@ function AuthStackScreen() {
       }}
     >
       <Stack.Screen name="Login" component={ LoginScreen } />
-      <Stack.Screen name="SignUp" component={SignUpScreen} />
     </Stack.Navigator>
   );
 }

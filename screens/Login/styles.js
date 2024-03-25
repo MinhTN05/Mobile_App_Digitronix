@@ -22,21 +22,6 @@ const styles = StyleSheet.create({
         height: 109,
         top: 120
     },
-    registerContainer: {
-        flexDirection: 'row', 
-        justifyContent: 'center', 
-        alignItems: 'center', 
-        marginTop: 100, 
-    },
-    register: {
-        color: '#5a5858',
-        fontSize: FONTSIZE.h2,
-        textAlign: 'center', 
-    },
-    registerClick: {
-        color: COLORS.red,
-        fontSize: 20
-    },
     input: {
         shadowColor: '#000',
         shadowOffset: {
@@ -53,11 +38,12 @@ const styles = StyleSheet.create({
         marginBottom: 30
     },
     button: {
-        backgroundColor: COLORS.black,
+        backgroundColor: COLORS.drawer,
         borderRadius: 3,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingVertical: 10 // Điều chỉnh kích thước nút
+        paddingVertical: 10,
+        paddingHorizontal: 5,
     },
     buttonText: {
         color: COLORS.white,

@@ -51,10 +51,6 @@ const LoginScreen = () => {
         setShowPass(!showPass)
     }
 
-    const changeRegister = () => {
-        navigation.navigate('SignUp');
-    };
-
     const dismissKeyboard = () => {
         if (Platform.OS === 'web') {
             document.activeElement.blur();
@@ -96,10 +92,6 @@ const LoginScreen = () => {
                         >
                             <Text style={styles.buttonText}>LOGIN</Text>
                         </TouchableHighlight>
-                        <View style={styles.registerContainer}>
-                            <Text onPress={changeRegister} style={styles.register}>Do not have account?</Text>
-                            <Text onPress={changeRegister} style={styles.registerClick}> Sign Up</Text>
-                        </View>
                     </View>
                 </TouchableWithoutFeedback>
             </ImageBackground>
