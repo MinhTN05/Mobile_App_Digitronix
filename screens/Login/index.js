@@ -18,21 +18,32 @@ const LoginScreen = () => {
     const dispatch = useDispatch()
     const navigation = useNavigation()
 
-    // const [data, setData] = useState({
-    //     username: '',
-    //     password: ''
-    // })
-
     const handleLogin = async () => {
         try {
             const response = await dispatch(fetchAsyncLogin({ username, password }));
-            const { token } = response.payload;
+            const { token, roleId } = response.payload;
             await AsyncStorage.setItem('access_token', token);
-            await dispatch(SetUserName(username)),
+            await dispatch(SetUserName(username));
 
-                navigation.navigate('MyTabs');
+            switch (roleId) {
+                case 1:
+                    navigation.navigate('MyTabs');
+                    break;
+                case 2:
+                    navigation.navigate('MyTabsProduction');
+                    break;
+                case 5:
+                    navigation.navigate('MyTabsWorker');
+                    break;
+                case 6:
+                    navigation.navigate('MyTabsDriver');
+                    break;
+                default:
+                    alert('Login unsuccessful!!!');
+                    break;
+            }
         } catch (error) {
-            alert('Đăng nhập thất bại');
+            alert('Login Unsuccessful!!!');
         }
     };
 
@@ -83,13 +94,12 @@ const LoginScreen = () => {
                             underlayColor={COLORS.black}
                             style={styles.button} onPress={handleLogin}
                         >
-                            <Text style={styles.buttonText}>Đăng nhập</Text>
+                            <Text style={styles.buttonText}>LOGIN</Text>
                         </TouchableHighlight>
-                        <Text onPress={changeRegister} style={styles.register}>Do not have account?
-                            <Text
-                                style={styles.registerClick}
-                            > Sign Up</Text>
-                        </Text>
+                        <View style={styles.registerContainer}>
+                            <Text onPress={changeRegister} style={styles.register}>Do not have account?</Text>
+                            <Text onPress={changeRegister} style={styles.registerClick}> Sign Up</Text>
+                        </View>
                     </View>
                 </TouchableWithoutFeedback>
             </ImageBackground>

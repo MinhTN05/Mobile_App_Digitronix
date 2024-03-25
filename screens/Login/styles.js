@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { COLORS, FONTSIZE } from '../../contains';
 
-
 const styles = StyleSheet.create({
     container: {
         top: 150,
@@ -23,14 +22,16 @@ const styles = StyleSheet.create({
         height: 109,
         top: 120
     },
+    registerContainer: {
+        flexDirection: 'row', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        marginTop: 100, 
+    },
     register: {
         color: '#5a5858',
-        position: 'absolute',
-        bottom: 40,
-        left: 10,
         fontSize: FONTSIZE.h2,
-        justifyContent: 'center',
-        alignItems: 'center'
+        textAlign: 'center', 
     },
     registerClick: {
         color: COLORS.red,
@@ -53,12 +54,10 @@ const styles = StyleSheet.create({
     },
     button: {
         backgroundColor: COLORS.black,
-        width: '100%',
         borderRadius: 3,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingVertical: 15
-
+        paddingVertical: 10 // Điều chỉnh kích thước nút
     },
     buttonText: {
         color: COLORS.white,
