@@ -16,10 +16,10 @@ const WorkschedulesStackScreen = () => {
             headerTintColor : COLORS.second
         }}
     >
-      <WorkschedulesStack.Screen name="WorkschedulesScreen" component={WorkschedulesScreen} options={{title : 'Lịch Làm việc', headerLeft : () => (
+      <WorkschedulesStack.Screen name="WorkschedulesScreen" component={WorkschedulesScreen} options={{title : 'Production Task', headerLeft : () => (
                                                                               <IconHeader />
                                                                           )}}/>
-      <WorkschedulesStack.Screen name="WorksDetailsScreen" component={WorksDetailsScreen} options={{title : 'Đã vào xem thông tin chi tiết'}}/>
+      <WorkschedulesStack.Screen name="WorksDetailsScreen" component={WorksDetailsScreen} options={{title : 'Task'}}/>
     </WorkschedulesStack.Navigator>
   );
 }
