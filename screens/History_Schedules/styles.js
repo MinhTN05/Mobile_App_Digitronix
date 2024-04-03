@@ -24,30 +24,35 @@ const styles = StyleSheet.create({
         height: 24,
         marginRight: 5,
     },
-    driverContainer: { // Thay đổi workerContainer thành driverContainer
+    deliveryContainer: {
         backgroundColor: COLORS.white,
         borderWidth: 1,
         borderColor: COLORS.border,
-        borderRadius: 5, // Bo góc lại
+        borderRadius: 5,
         marginBottom: 10,
         padding: 10,
-        shadowColor: COLORS.black, // Sử dụng shadowColor và shadowOpacity thay cho boxShadow
+        shadowColor: COLORS.black,
         shadowOpacity: 0.5,
         shadowOffset: {
             width: 0,
             height: 2,
         },
         shadowRadius: 2,
-        elevation: 2, // elevation cho Android
+        elevation: 2,
     },
-    driverName: { // Thay đổi workerName thành driverName
+    customerName: {
         fontSize: 18,
         fontWeight: 'bold',
         marginBottom: 5,
         color: COLORS.text,
         fontFamily: 'Arial',
     },
-    driverLicense: { // Thay đổi workerMission thành driverLicense
+    deliveryAddress: {
+        fontSize: 16,
+        color: COLORS.text,
+        fontFamily: 'Arial',
+    },
+    deliveryStatus: {
         fontSize: 16,
         color: COLORS.text,
         fontFamily: 'Arial',

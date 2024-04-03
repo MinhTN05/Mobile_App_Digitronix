@@ -5,6 +5,7 @@ import { COLORS } from '../../contains';
 import { Image } from 'react-native';
 
 import DriverStackScreen from './DriverNavigation';
+import HistoryStackScreen from './HistoryNavigation';
 
 
 const Tab = createBottomTabNavigator();
@@ -21,6 +22,13 @@ const MyTabsDriver = () => {
                 return (
                   <Image
                     source={focused ? require('../../assets/images/Taxi_2.png') : require('../../assets/images/Taxi_1.png')}
+                    style={{ width: 24, height: 24 }}
+                  />
+                );
+                case 'History':
+                return (
+                  <Image
+                    source={focused ? require('../../assets/images/Delivery_2.png') : require('../../assets/images/Delivery_1.png')}
                     style={{ width: 24, height: 24 }}
                   />
                 );
@@ -44,6 +52,7 @@ const MyTabsDriver = () => {
         })}
       >
         <Tab.Screen name="Driver" component={DriverStackScreen} options={{title : 'Driver Shedules'}}/>
+        <Tab.Screen name="History" component={HistoryStackScreen} options={{title : 'Delivery History'}}/>
       </Tab.Navigator>
     )
 }

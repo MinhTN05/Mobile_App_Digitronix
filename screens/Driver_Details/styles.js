@@ -1,38 +1,36 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    container : {
-        flex : 1,
-        justifyContent : 'center',
-        alignItems: 'center'
-    },
-    box : {
-        paddingHorizontal : 10,
-        paddingVertical : 10,
-        backgroundColor : '#0EAF89',
-        borderRadius : 10,
-        marginBottom : 20,
-    },
-    list:{
-        marginTop:-300,
-      },
-    orderContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: 10,
-        borderBottomWidth: 1,
-        borderBottomColor: '#ccc',
-      },
-      orderDetails: {
-    
-      },
-      orderText: {
-        marginBottom: 5,
-      },
-      detailsButton: {
-        color: 'blue',
-      },
-})
+  orderListContainer: {
+    flex: 1,
+    backgroundColor: '#FFF',
+    borderTopWidth: 1,
+    borderTopColor: '#000',
+    marginTop: 20,
+  },
+  orderContainer: {
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#000',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  orderContent: {
+    flex: 1,
+  },
+  orderText: {
+    marginBottom: 5,
+  },
+  imageContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  image: {
+    width: 50,
+    height: 50,
+    marginHorizontal: 5,
+  },
+});
 
 export default styles;

@@ -14,6 +14,8 @@ import OrderStatusScreen from "./OrderStatus";
 import DriverDetailsScreen from "./Driver_Details";
 import DriverchedulesScreen from "./Driver_Schedules";
 
+import DeliveryHistoryScreen from "./History_Schedules"
+
 import LoginScreen from "./Login";
 
 import EditProductScreen from "./Edit_Product";
@@ -34,6 +36,7 @@ export {
     OrderStatusScreen,
     DriverDetailsScreen,
     DriverchedulesScreen,
+    DeliveryHistoryScreen,
     LoginScreen,
     DrawerContent,
     EditProductScreen,

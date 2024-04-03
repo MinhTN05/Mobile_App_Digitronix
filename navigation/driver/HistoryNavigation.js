@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { DriverchedulesScreen, DriverDetailsScreen } from '../../screens'
+import { DeliveryHistoryScreen } from '../../screens';
 import { COLORS } from '../../contains';
 import IconHeader from '../../components/iconHeader';
 
-const DriverStack = createStackNavigator();
+const HistoryStack = createStackNavigator();
 
-const DriverStackScreen = () => {
+const HistoryStackScreen = () => {
   return (
-    <DriverStack.Navigator
+    <HistoryStack.Navigator
         screenOptions={{
             headerStyle : {
                 backgroundColor : COLORS.yellow
@@ -16,12 +16,12 @@ const DriverStackScreen = () => {
             headerTintColor : COLORS.second
         }}
     >
-      <DriverStack.Screen name="DriverchedulesScreen" component={DriverchedulesScreen} options={{title : 'Driver', headerLeft : () => (
+      <HistoryStack.Screen name="DeliveryHistoryScreen" component={DeliveryHistoryScreen} options={{title : 'Delivery history', headerLeft : () => (
                                                                               <IconHeader />
                                                                           )}}/>
-      <DriverStack.Screen name="DriverDetailsScreen" component={DriverDetailsScreen} options={{title : 'Order details'}}/>
-    </DriverStack.Navigator>
+      {/* <HistoryStack.Screen name="DriverDetailsScreen" component={DriverDetailsScreen} options={{title : 'Đã vào xem thông tin chi tiết lịch sử giao hàng'}}/> */}
+    </HistoryStack.Navigator>
   );
 }
 
-export default DriverStackScreen
+export default HistoryStackScreen
