@@ -39,15 +39,17 @@ const styles = StyleSheet.create({
     },
     button: {
         backgroundColor: COLORS.drawer,
-        borderRadius: 3,
+        borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
         paddingVertical: 10,
-        paddingHorizontal: 5,
+        paddingHorizontal: 1,
+        borderWidth: 1,
+        borderColor: COLORS.yellow,
     },
     buttonText: {
         color: COLORS.white,
-        fontSize: 20
+        fontSize: 22
     },
     icon: {
         position: 'absolute',
