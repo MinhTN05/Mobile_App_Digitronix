@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     },
     button: {
         backgroundColor: COLORS.drawer,
-        borderRadius: 10,
+        borderRadius: 20,
         justifyContent: 'center',
         alignItems: 'center',
         paddingVertical: 10,
