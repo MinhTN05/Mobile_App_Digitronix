@@ -4,23 +4,62 @@ import { COLORS } from "../../contains";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
+        padding: 10,
+    },
+    searchContainer: {
+        flexDirection: 'row',
         alignItems: 'center',
+        marginBottom: 10,
+    },
+    searchInput: {
+        flex: 1,
+        borderWidth: 1,
+        borderColor: COLORS.black,
+        borderRadius: 5,
+        padding: 10,
+        marginRight: 10,
+    },
+    searchIcon: {
+        width: 24,
+        height: 24,
+        marginRight: 5,
     },
     box: {
-        width: '80%',
-        padding: 20,
-        marginVertical: 10,
-        backgroundColor: COLORS.primary,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
+        backgroundColor: COLORS.white,
+        borderWidth: 1,
+        borderColor: COLORS.border,
+        borderRadius: 0,
+        marginBottom: 10,
+        padding: 10,
+        shadowColor: COLORS.black,
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
     },
     product: {
-        paddingHorizontal: 10,
+        backgroundColor: COLORS.white,
+        borderWidth: 1,
+        borderColor: COLORS.border,
+        borderRadius: 0,
+        marginBottom: 10,
+        padding: 10,
+        boxShadow: '0px 0px 5px 0px rgba(0,0,0,0.75)',
     },
     productText: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginBottom: 5,
+        color: COLORS.text,
+        fontFamily: 'Arial',
+    },
+    productStatus: {
         fontSize: 16,
+        color: COLORS.text,
+        fontFamily: 'Arial',
     },
     deleteIconContainer: {
         padding: 5,
@@ -30,14 +69,12 @@ const styles = StyleSheet.create({
         height: 20,
     },
     imageContainer: {
-        position: 'absolute',
-        bottom: 20,
-        right: 20,
+        alignItems: 'center',
     },
     image: {
         width: 50,
         height: 50,
     },
-})
+});
 
 export default styles;
