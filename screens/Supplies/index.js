@@ -1,5 +1,5 @@
-import React from 'react';
-import {View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, FlatList, Image, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
 
@@ -7,10 +7,25 @@ import styles from './styles';
 const SuppliesScreen = () => {
 
     const navigation = useNavigation();
+    const [searchKeyword, setSearchKeyword] = useState('');
+    const [supplies, setsupplies] = useState([
+        { id: 1, supplies: 'Test', price: '23000', quantity: '10' },
+        { id: 2, supplies: 'Test123', price: '245672', quantity: '20' },
+        { id: 3, supplies: 'Test456', price: '1233000', quantity: '100' },
+    ]);
 
     const navigateToDetail = () => {
         navigation.push('CategorySuppliesScreen', {});
     }
+
+    const handleSearch = () => {
+        // Tìm kiếm worker dựa trên từ khóa searchKeyword
+        const filteredSupplies = supplies.filter(supplies =>
+            supplies.name.toLowerCase().includes(setSearchKeyword.toLowerCase())
+        );
+        // Cập nhật danh sách worker đã lọc
+        setsupplies(filteredSupplies);
+    };
 
     return (
         <View style={styles.container}>
@@ -19,39 +34,26 @@ const SuppliesScreen = () => {
                     style={styles.searchInput}
                     placeholder="Search by Name Supplies"
                 />
-                <TouchableOpacity style={styles.searchButton}>
+                <TouchableOpacity onPress={handleSearch}>
                     <Image
                         source={require('../../assets/images/Search.png')}
                         style={styles.searchIcon}
                     />
                 </TouchableOpacity>
             </View>
-            <TouchableOpacity onPress={navigateToDetail} style={[styles.box, styles.product]}>
-                <Image
-                    source={require('../../assets/images/img_product.png')} // Đường dẫn đến hình ảnh sản phẩm 1
-                    style={styles.productImage}
-                />
-                <Text style={styles.productText}>Vật tư 1: ABC</Text>
-                <TouchableOpacity onPress={() => console.log('Xóa sản phẩm')} style={styles.deleteIconContainer}>
-                    <Image source={require('../../assets/images/Delete_1.png')} style={styles.deleteIcon} />
-                </TouchableOpacity>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={navigateToDetail} style={[styles.box, styles.product]}>
-                <Image
-                    source={require('../../assets/images/img_product.png')} // Đường dẫn đến hình ảnh sản phẩm 1
-                    style={styles.productImage}
-                />
-                <Text style={styles.productText}>Vật tư 2: 123</Text>
-                <TouchableOpacity onPress={() => console.log('Xóa sản phẩm')} style={styles.deleteIconContainer}>
-                    <Image source={require('../../assets/images/Delete_1.png')} style={styles.deleteIcon} />
-                </TouchableOpacity>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.imageContainer}>
-                <Image
-                    source={require('../../assets/images/Add_1.png')}
-                    style={styles.image}
-                />
-            </TouchableOpacity>
+            <FlatList
+                data={supplies}
+                renderItem={({ item }) => (
+                    <TouchableOpacity onPress={navigateToDetail}>
+                        <View style={styles.suppliesContainer}>
+                            <Text style={styles.suppliesName}>Supplies: {item.supplies}</Text>
+                            <Text style={styles.suppliesText}>Price: {item.price}</Text>
+                            <Text style={styles.suppliesText}>Quantity: {item.quantity}</Text>
+                        </View>
+                    </TouchableOpacity>
+                )}
+                keyExtractor={item => item.id.toString()}
+            />
         </View>
     )
 }
