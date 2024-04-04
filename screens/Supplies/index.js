@@ -21,7 +21,7 @@ const SuppliesScreen = () => {
     const handleSearch = () => {
         // Tìm kiếm worker dựa trên từ khóa searchKeyword
         const filteredSupplies = supplies.filter(supplies =>
-            supplies.name.toLowerCase().includes(setSearchKeyword.toLowerCase())
+            supplies.supplies.toLowerCase().includes(setSearchKeyword.toLowerCase())
         );
         // Cập nhật danh sách worker đã lọc
         setsupplies(filteredSupplies);
