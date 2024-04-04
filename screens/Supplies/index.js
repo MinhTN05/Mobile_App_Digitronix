@@ -42,7 +42,7 @@ const SuppliesScreen = () => {
                 </TouchableOpacity>
             </View>
             <FlatList
-                data={supplies}
+                data={filteredSupplies}
                 renderItem={({ item }) => (
                     <TouchableOpacity onPress={navigateToDetail}>
                         <View style={styles.suppliesContainer}>
