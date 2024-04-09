@@ -1,7 +1,7 @@
 import { api } from '.'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const ProductService = {
+const MaterialService = {
     list({
         id,
         name,
@@ -10,12 +10,12 @@ const ProductService = {
         quantity,
         created_at,
         updated_at,
-        category_id,
         category_name,
+        category_id,
         tags
     } = {}) {
         return AsyncStorage.getItem('access_token').then(token => {
-            return api.call().get(`products/all?page=0&limit=20`, {
+            return api.call().get(`materials/all?page=0&category_id=1&limit=10`, {
                 params: {
                     id,
                     name,
@@ -24,8 +24,8 @@ const ProductService = {
                     quantity,
                     created_at,
                     updated_at,
-                    category_id,
                     category_name,
+                    category_id,
                     tags
                 },
                 headers: {
@@ -34,15 +34,5 @@ const ProductService = {
             });
         });
     },
-    getProductDetail(id) {
-        return AsyncStorage.getItem('access_token').then(token => {
-            return api.call().get(`products/${id}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-        });
-    },
-};
-
-export default ProductService;
+}
+export default MaterialService;

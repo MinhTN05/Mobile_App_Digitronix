@@ -4,6 +4,7 @@ import CategoryReducer from './slices/category';
 import ProductReducer from './slices/product';
 import usernameReducer from './slices/username';
 import RolesReducer from './slices/roles';
+import MaterialReducer from './slices/material';
 
 const store = configureStore({
     reducer: {
@@ -11,7 +12,8 @@ const store = configureStore({
         Category        : CategoryReducer,
         Product         : ProductReducer,
         usernameReducer : usernameReducer,
-        Roles           : RolesReducer
+        Roles           : RolesReducer,
+        Material        : MaterialReducer
     },
 })
 

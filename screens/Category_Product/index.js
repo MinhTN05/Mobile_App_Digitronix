@@ -54,10 +54,6 @@ const CategoryProductScreen = ({ route, navigation }) => {
                     )}
                     <View style={styles.detailContainer}>
                         <View style={styles.productDetail}>
-                            <Text style={styles.detailLabel}>ID:</Text>
-                            <Text style={styles.detailText}>{productDetails.id}</Text>
-                        </View>
-                        <View style={styles.productDetail}>
                             <Text style={styles.detailLabel}>Product Name:</Text>
                             <Text style={styles.detailText}>{productDetails.name}</Text>
                         </View>
@@ -78,12 +74,14 @@ const CategoryProductScreen = ({ route, navigation }) => {
                             <Text style={styles.detailText}>{productDetails.updated_at.split("T").join(" ")}</Text>
                         </View>
                         <View style={styles.productDetail}>
-                            <Text style={styles.detailLabel}>ID Category:</Text>
-                            <Text style={styles.detailText}>{productDetails.category_id}</Text>
+                            <Text style={styles.detailLabel}>Category:</Text>
+                            <Text style={styles.detailText}>{productDetails.category_name}</Text>
                         </View>
                         <View style={styles.productDetail}>
                             <Text style={styles.detailLabel}>Tags:</Text>
-                            <Text style={styles.detailText}>{productDetails.tags}</Text>
+                            {productDetails.tags.map((tag, index) => {
+                                <Text key={index} style={styles.detailText}>{tag}</Text>
+                            })}
                         </View>
                     </View>
                     <View style={styles.buttonContainer}>
