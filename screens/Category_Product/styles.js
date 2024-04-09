@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
         width: '100%', // Rộng ra hết phần màn hình
     },
     productDetail: {
+        top: 20,
         flexDirection: 'row',
         marginBottom: 15, // Tăng khoảng cách giữa các phần tử
         alignItems: 'center', // Căn chỉnh các phần tử theo chiều ngang
