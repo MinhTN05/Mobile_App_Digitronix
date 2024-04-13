@@ -16,7 +16,8 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         width: '100%', // Rộng ra hết phần màn hình
     },
-    productDetail: {
+    materialDetails: {
+        top: 20,
         flexDirection: 'row',
         marginBottom: 15, // Tăng khoảng cách giữa các phần tử
         alignItems: 'center', // Căn chỉnh các phần tử theo chiều ngang
@@ -29,7 +30,9 @@ const styles = StyleSheet.create({
     },
     detailText: {
         flex: 1,
-        fontSize: 18, // Tăng kích thước chữ
+        fontSize: 18,
+        overflow: 'hidden', // Ẩn bất kỳ nội dung nào vượt ra khỏi khung hiển thị
+        textAlign: 'left', // Canh lề văn bản về phía trái
     },
     productImage: {
         width: 80, // Tăng kích thước hình ảnh
@@ -65,6 +68,12 @@ const styles = StyleSheet.create({
         width: 20,
         height: 20,
     },
+    image: {
+        width: 200,
+        height: 200,
+        alignItems: 'center',
+        justifyContent: 'center',
+    }
 })
 
 export default styles;

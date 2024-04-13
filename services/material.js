@@ -34,5 +34,14 @@ const MaterialService = {
             });
         });
     },
+    getMaterialDetail(id) {
+        return AsyncStorage.getItem('access_token').then(token => {
+            return api.call().get(`materials/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+        });
+    },
 }
 export default MaterialService;

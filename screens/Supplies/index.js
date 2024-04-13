@@ -31,10 +31,10 @@ const SuppliesScreen = () => {
         }
     }, [searchKeyword, dataMaterial.materials]);
 
-    console.log('dataMaterial', dataMaterial);
+    // console.log('dataMaterial', dataMaterial);
 
-    const navigateToDetail = () => {
-        navigation.push('CategorySuppliesScreen', {});
+    const handleProductPress = (id) => {
+        navigation.push('CategorySuppliesScreen', {id: id});
     }
 
     const handleSearchIconPress = () => {
