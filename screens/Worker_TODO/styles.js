@@ -7,9 +7,6 @@ export default StyleSheet.create({
     padding: 20,
   },
   dateContainer: {
-    position: 'absolute',
-    top: 20,
-    right: 20,
     borderWidth: 2,
     borderColor: 'black',
     borderRadius: 5,
@@ -19,14 +16,15 @@ export default StyleSheet.create({
   rowContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 10, // Đặt marginBottom thành 10 để cách ra khỏi phần tiếp theo
+    marginBottom: 10,
     paddingHorizontal: 5,
     width: '100%',
   },
   columnContainer: {
-    flex: 1,
-    marginRight: 10,
-  },
+  flex: 1,
+  flexDirection: 'row',
+  alignItems: 'center',
+},
   label: {
     fontSize: 16,
     fontWeight: 'bold',
@@ -70,9 +68,14 @@ export default StyleSheet.create({
     borderColor: 'black',
     borderRadius: 5,
     padding: 10,
+    marginTop: 0,
   },
   texttext: {
-    marginHorizontal: 10, // Cách 10 từ lề trái và lề phải
-    marginTop: 100
+    marginHorizontal: 10,
+    marginBottom: 10,
+    marginTop: 10
+  },
+  rightAligned: {
+    alignSelf: 'flex-end',
   },
 });

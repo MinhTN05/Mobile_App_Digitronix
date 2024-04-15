@@ -22,7 +22,7 @@ const ToDoScreen = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.dateContainer}>
+      <View style={[styles.dateContainer, styles.rightAligned]}>
         <TouchableOpacity onPress={() => setShowDatePicker(true)}>
           <Text style={styles.dateText}>Date: {date.toDateString()}</Text>
         </TouchableOpacity>
@@ -57,16 +57,16 @@ const ToDoScreen = () => {
               <Text style={styles.label}>Production_Detail</Text>
             </View>
             <View style={styles.columnContainer}>
-              <Text style={styles.label}>Quantity:</Text>
+              <Text style={styles.label}>Quantity: 500</Text>
             </View>
           </View>
           <View style={styles.rowContainer}>
             <View style={styles.columnContainer}>
               <Text style={styles.label}>Time: {date.toLocaleTimeString()}</Text>
             </View>
-            <View style={styles.columnContainer}>
+            <View style={[styles.columnContainer, styles.rightAligned]}>
               <TouchableOpacity style={styles.startButton}>
-                <Image source={require('../../assets/images/Save.png')} style={styles.startIcon} />
+                <Image source={require('../../assets/images/Start.png')} style={styles.startIcon} />
                 <Text style={styles.startText}>Start</Text>
               </TouchableOpacity>
             </View>
