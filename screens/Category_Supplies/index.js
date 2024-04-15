@@ -33,7 +33,7 @@ const CategorySuppliesScreen = ({ route, navigation }) => {
 
         fetchAccessToken();
     }, [id]);
-    console.log(materialDetails);
+    
     const navigateBack = () => {
         navigation.goBack();
     };
@@ -46,7 +46,7 @@ const CategorySuppliesScreen = ({ route, navigation }) => {
                 <>
                     {materialDetails ? (
                         <Image source={{
-                            uri: `${`http://localhost:1702/api/v1/materials/images/${materialDetails.img}`}`
+                            uri: `${`http://localhost:1702/api/v1/materials/images/${materialDetails.image}`}`
                         }} style={styles.image} />
                     ) : (
                         <Text>No image available</Text>
