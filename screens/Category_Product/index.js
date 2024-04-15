@@ -79,8 +79,8 @@ const CategoryProductScreen = ({ route, navigation }) => {
                         </View>
                         <View style={styles.productDetail}>
                             <Text style={styles.detailLabel}>Tags:</Text>
-                            {productDetails.tags.map((tag, index) => {
-                                <Text key={index} style={styles.detailText}>{tag}</Text>
+                            {productDetails.tags.map((tags, index) => {
+                                return <Text key={index} style={styles.detailText}>{tags.name}</Text>
                             })}
                         </View>
                     </View>

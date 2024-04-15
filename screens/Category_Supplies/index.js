@@ -33,7 +33,7 @@ const CategorySuppliesScreen = ({ route, navigation }) => {
 
         fetchAccessToken();
     }, [id]);
-
+    console.log(materialDetails);
     const navigateBack = () => {
         navigation.goBack();
     };
@@ -78,8 +78,8 @@ const CategorySuppliesScreen = ({ route, navigation }) => {
                         </View>
                         <View style={styles.materialDetails}>
                             <Text style={styles.detailLabel}>Tags:</Text>
-                            {materialDetails.tags.map((tag, index) => {
-                                <Text key={index} style={styles.detailText}>{tag}</Text>
+                            {materialDetails.tags.map((tags, index) => {
+                                return <Text key={index} style={styles.detailText}>{tags.name}</Text>
                             })}
                         </View>
                     </View>
