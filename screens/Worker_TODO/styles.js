@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { COLORS } from '../../contains'
 
 export default StyleSheet.create({
   container: {
@@ -8,7 +9,7 @@ export default StyleSheet.create({
   },
   dateContainer: {
     borderWidth: 2,
-    borderColor: 'black',
+    borderColor: COLORS.boder, 
     borderRadius: 5,
     padding: 10,
     marginBottom: 20,
@@ -21,14 +22,18 @@ export default StyleSheet.create({
     width: '100%',
   },
   columnContainer: {
-  flex: 1,
-  flexDirection: 'row',
-  alignItems: 'center',
-},
+    flexDirection: 'row', // Thay đổi từ 'column' thành 'row'
+    alignItems: 'center',
+  },
+  quantityContainer: {
+    marginLeft: 'auto', // Đẩy phần tử này sang phải cùng như có một khoảng trống giữa nó và các phần tử khác
+  },
   label: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 5,
+    color: COLORS.text,
+    fontFamily: 'Arial',
   },
   input: {
     borderWidth: 1,
@@ -55,17 +60,22 @@ export default StyleSheet.create({
     fontWeight: 'bold',
   },
   dateText: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 5,
+    color: COLORS.text,
+    fontFamily: 'Arial',
   },
   timeText: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
+    marginBottom: 5,
+    color: COLORS.text,
+    fontFamily: 'Arial',
   },
   textContainer: {
     borderWidth: 2,
-    borderColor: 'black',
+    borderColor: COLORS.boder, 
     borderRadius: 5,
     padding: 10,
     marginTop: 0,

@@ -56,7 +56,7 @@ const ToDoScreen = () => {
             <View style={styles.columnContainer}>
               <Text style={styles.label}>Production_Detail</Text>
             </View>
-            <View style={styles.columnContainer}>
+            <View style={[styles.columnContainer, styles.quantityContainer]}>
               <Text style={styles.label}>Quantity: 500</Text>
             </View>
           </View>
