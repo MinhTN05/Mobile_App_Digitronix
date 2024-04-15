@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { WorkschedulesScreen, WorksDetailsScreen } from '../../screens'
+import { ProcessingScreen } from '../../screens'
 import { COLORS } from '../../contains';
 import IconHeader from '../../components/iconHeader';
 
-const WorkschedulesStack = createStackNavigator();
+const ProcessingStack = createStackNavigator();
 
-const WorkschedulesStackScreen = () => {
+const ProcessingStackScreen = () => {
   return (
-    <WorkschedulesStack.Navigator
+    <ProcessingStack.Navigator
         screenOptions={{
             headerStyle : {
                 backgroundColor : COLORS.yellow
@@ -16,12 +16,11 @@ const WorkschedulesStackScreen = () => {
             headerTintColor : COLORS.second
         }}
     >
-      <WorkschedulesStack.Screen name="WorkschedulesScreen" component={WorkschedulesScreen} options={{title : 'Production Task', headerLeft : () => (
+      <ProcessingStack.Screen name="WorkschedulesScreen" component={ProcessingScreen} options={{title : 'Production Task', headerLeft : () => (
                                                                               <IconHeader />
                                                                           )}}/>
-      <WorkschedulesStack.Screen name="WorksDetailsScreen" component={WorksDetailsScreen} options={{title : 'Task'}}/>
-    </WorkschedulesStack.Navigator>
+    </ProcessingStack.Navigator>
   );
 }
 
-export default WorkschedulesStackScreen
+export default ProcessingStackScreen

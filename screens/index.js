@@ -21,7 +21,11 @@ import LoginScreen from "./Login";
 import EditProductScreen from "./Edit_Product";
 import EditSuppliesScreen from "./Edit_Supplies";
 
-import DrawerContent from "./Drawer"
+import DrawerContent from "./Drawer";
+
+import ProcessingScreen from "./Worker_Processing";
+import DoneScreen from "./Worker_Done";
+import ToDoScreen from "./Worker_TODO";
 
 export {
     ProductScreen,
@@ -41,4 +45,7 @@ export {
     DrawerContent,
     EditProductScreen,
     EditSuppliesScreen,
+    ProcessingScreen,
+    DoneScreen,
+    ToDoScreen
 }
