@@ -26,7 +26,7 @@ export default function App(props) {
           drawerContent={(props) => <DrawerContent {...props} />}
           initialRouteName='AuthStackScreen'
         >
-          <Drawer.Screen name="AuthStackScreen" component={AuthStackScreen} />
+          <Drawer.Screen name="AuthStackScreen" component={MyTabsWorker} />
           
           <Drawer.Screen name="MyTabs" component={MyTabs} />
           <Drawer.Screen name="MyTabsWorker" component={MyTabsWorker} />
