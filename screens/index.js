@@ -11,10 +11,10 @@ import CategoryManufactureScreen from "./Category_Manufacture";
 import CategoryOrderStatusScreen from "./Category_OrderStatus";
 import OrderStatusScreen from "./OrderStatus";
 
-import DriverDetailsScreen from "./Driver_Details";
-import DriverchedulesScreen from "./Driver_Schedules";
+import DeliveriedDetailsScreen from "./Deliveried_Detail";
+import DeliveriedchedulesScreen from "./Deliveried";
 
-import DeliveryHistoryScreen from "./History_Schedules"
+import DeliveriedOnchedulesScreen from "./Deliveried_On"
 
 import LoginScreen from "./Login";
 
@@ -38,9 +38,9 @@ export {
     CategoryManufactureScreen,
     CategoryOrderStatusScreen,
     OrderStatusScreen,
-    DriverDetailsScreen,
-    DriverchedulesScreen,
-    DeliveryHistoryScreen,
+    DeliveriedDetailsScreen,
+    DeliveriedchedulesScreen,
+    DeliveriedOnchedulesScreen,
     LoginScreen,
     DrawerContent,
     EditProductScreen,

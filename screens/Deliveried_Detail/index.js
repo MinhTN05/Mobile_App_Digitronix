@@ -63,7 +63,7 @@ const renderScene = SceneMap({
   fourth: FourthRoute,
 });
 
-const DriverDetailsScreen = () => {
+const DeliveriedDetailsScreen = () => {
   const layout = useWindowDimensions();
 
   return (
@@ -78,4 +78,4 @@ const DriverDetailsScreen = () => {
   );
 };
 
-export default DriverDetailsScreen;
+export default DeliveriedDetailsScreen;

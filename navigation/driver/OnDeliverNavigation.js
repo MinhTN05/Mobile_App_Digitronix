@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { DeliveryHistoryScreen } from '../../screens';
+import { DeliveriedOnchedulesScreen } from '../../screens';
 import { COLORS } from '../../contains';
 import IconHeader from '../../components/iconHeader';
 
@@ -16,7 +16,7 @@ const OnDeliverStackScreen = () => {
             headerTintColor : COLORS.second
         }}
     >
-      <OnDeliverStack.Screen name="DeliveryHistoryScreen" component={DeliveryHistoryScreen} options={{title : 'On Deliver', headerLeft : () => (
+      <OnDeliverStack.Screen name="DeliveriedOnchedulesScreen" component={DeliveriedOnchedulesScreen} options={{title : 'On Deliver', headerLeft : () => (
                                                                               <IconHeader />
                                                                           )}}/>
       {/* <OnDeliverStack.Screen name="DriverDetailsScreen" component={DriverDetailsScreen} options={{title : 'Đã vào xem thông tin chi tiết lịch sử giao hàng'}}/> */}

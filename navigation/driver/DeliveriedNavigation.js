@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { DriverchedulesScreen, DriverDetailsScreen } from '../../screens'
+import { DeliveriedchedulesScreen, DeliveriedDetailsScreen } from '../../screens'
 import { COLORS } from '../../contains';
 import IconHeader from '../../components/iconHeader';
 
@@ -16,10 +16,10 @@ const DeliveriedStackScreen = () => {
             headerTintColor : COLORS.second
         }}
     >
-      <DeliveriedStack.Screen name="DriverchedulesScreen" component={DriverchedulesScreen} options={{title : 'Driver', headerLeft : () => (
+      <DeliveriedStack.Screen name="DriverchedulesScreen" component={DeliveriedchedulesScreen} options={{title : 'Driver', headerLeft : () => (
                                                                               <IconHeader />
                                                                           )}}/>
-      <DeliveriedStack.Screen name="DriverDetailsScreen" component={DriverDetailsScreen} options={{title : 'Order details'}}/>
+      <DeliveriedStack.Screen name="DeliveriedDetailsScreen" component={DeliveriedDetailsScreen} options={{title : 'Order details'}}/>
     </DeliveriedStack.Navigator>
   );
 }
