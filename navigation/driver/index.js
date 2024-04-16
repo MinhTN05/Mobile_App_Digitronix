@@ -4,8 +4,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { COLORS } from '../../contains';
 import { Image } from 'react-native';
 
-import DriverStackScreen from './DriverNavigation';
-import HistoryStackScreen from './HistoryNavigation';
+import DeliveriedStackScreen from './DeliveriedNavigation';
+import OnDeliverStackScreen from './OnDeliverNavigation';
 
 
 const Tab = createBottomTabNavigator();
@@ -21,14 +21,14 @@ const MyTabsDriver = () => {
               case 'Driver':
                 return (
                   <Image
-                    source={focused ? require('../../assets/images/Taxi_2.png') : require('../../assets/images/Taxi_1.png')}
+                    source={focused ? require('../../assets/images/Van_2.png') : require('../../assets/images/Van_1.png')}
                     style={{ width: 24, height: 24 }}
                   />
                 );
                 case 'History':
                 return (
                   <Image
-                    source={focused ? require('../../assets/images/Delivery_2.png') : require('../../assets/images/Delivery_1.png')}
+                    source={focused ? require('../../assets/images/Shipped_2.png') : require('../../assets/images/Shipped_1.png')}
                     style={{ width: 24, height: 24 }}
                   />
                 );
@@ -51,8 +51,8 @@ const MyTabsDriver = () => {
           headerShown : false
         })}
       >
-        <Tab.Screen name="Driver" component={DriverStackScreen} options={{title : 'Driver Shedules'}}/>
-        <Tab.Screen name="History" component={HistoryStackScreen} options={{title : 'Delivery History'}}/>
+        <Tab.Screen name="Driver" component={DeliveriedStackScreen} options={{title : 'Deliveried'}}/>
+        <Tab.Screen name="History" component={OnDeliverStackScreen} options={{title : 'On Deliver'}}/>
       </Tab.Navigator>
     )
 }

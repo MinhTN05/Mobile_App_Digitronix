@@ -4,11 +4,11 @@ import { DriverchedulesScreen, DriverDetailsScreen } from '../../screens'
 import { COLORS } from '../../contains';
 import IconHeader from '../../components/iconHeader';
 
-const DriverStack = createStackNavigator();
+const DeliveriedStack = createStackNavigator();
 
-const DriverStackScreen = () => {
+const DeliveriedStackScreen = () => {
   return (
-    <DriverStack.Navigator
+    <DeliveriedStack.Navigator
         screenOptions={{
             headerStyle : {
                 backgroundColor : COLORS.yellow
@@ -16,12 +16,12 @@ const DriverStackScreen = () => {
             headerTintColor : COLORS.second
         }}
     >
-      <DriverStack.Screen name="DriverchedulesScreen" component={DriverchedulesScreen} options={{title : 'Driver', headerLeft : () => (
+      <DeliveriedStack.Screen name="DriverchedulesScreen" component={DriverchedulesScreen} options={{title : 'Driver', headerLeft : () => (
                                                                               <IconHeader />
                                                                           )}}/>
-      <DriverStack.Screen name="DriverDetailsScreen" component={DriverDetailsScreen} options={{title : 'Order details'}}/>
-    </DriverStack.Navigator>
+      <DeliveriedStack.Screen name="DriverDetailsScreen" component={DriverDetailsScreen} options={{title : 'Order details'}}/>
+    </DeliveriedStack.Navigator>
   );
 }
 
-export default DriverStackScreen
+export default DeliveriedStackScreen

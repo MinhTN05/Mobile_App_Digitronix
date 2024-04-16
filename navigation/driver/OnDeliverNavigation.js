@@ -4,11 +4,11 @@ import { DeliveryHistoryScreen } from '../../screens';
 import { COLORS } from '../../contains';
 import IconHeader from '../../components/iconHeader';
 
-const HistoryStack = createStackNavigator();
+const OnDeliverStack = createStackNavigator();
 
-const HistoryStackScreen = () => {
+const OnDeliverStackScreen = () => {
   return (
-    <HistoryStack.Navigator
+    <OnDeliverStack.Navigator
         screenOptions={{
             headerStyle : {
                 backgroundColor : COLORS.yellow
@@ -16,12 +16,12 @@ const HistoryStackScreen = () => {
             headerTintColor : COLORS.second
         }}
     >
-      <HistoryStack.Screen name="DeliveryHistoryScreen" component={DeliveryHistoryScreen} options={{title : 'Delivery history', headerLeft : () => (
+      <OnDeliverStack.Screen name="DeliveryHistoryScreen" component={DeliveryHistoryScreen} options={{title : 'On Deliver', headerLeft : () => (
                                                                               <IconHeader />
                                                                           )}}/>
-      {/* <HistoryStack.Screen name="DriverDetailsScreen" component={DriverDetailsScreen} options={{title : 'Đã vào xem thông tin chi tiết lịch sử giao hàng'}}/> */}
-    </HistoryStack.Navigator>
+      {/* <OnDeliverStack.Screen name="DriverDetailsScreen" component={DriverDetailsScreen} options={{title : 'Đã vào xem thông tin chi tiết lịch sử giao hàng'}}/> */}
+    </OnDeliverStack.Navigator>
   );
 }
 
-export default HistoryStackScreen
+export default OnDeliverStackScreen
