@@ -55,7 +55,7 @@ export default StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   optionsContainer: {
-    width: screenWidth - 60, // screen width minus left and right padding
+    width: screenWidth - 100, // screen width minus left and right padding
     paddingHorizontal: 15, // padding left and right
     borderWidth: 1,
     borderColor: 'black',

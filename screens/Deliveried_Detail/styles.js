@@ -1,36 +1,46 @@
 import { StyleSheet } from "react-native";
+import { COLORS } from '../../contains'
 
 const styles = StyleSheet.create({
-  orderListContainer: {
+  container: {
     flex: 1,
-    backgroundColor: '#FFF',
-    borderTopWidth: 1,
-    borderTopColor: '#000',
-    marginTop: 20,
+    justifyContent: 'flex-start',
+    padding: 20,
   },
-  orderContainer: {
-    paddingHorizontal: 10,
-    paddingVertical: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#000',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+  dateContainer: {
+    borderWidth: 2,
+    borderColor: COLORS.boder, 
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 20,
   },
-  orderContent: {
-    flex: 1,
-  },
-  orderText: {
+  dateText: {
+    fontSize: 18,
+    fontWeight: 'bold',
     marginBottom: 5,
+    color: COLORS.text,
+    fontFamily: 'Arial',
   },
-  imageContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  timeText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 5,
+    color: COLORS.text,
+    fontFamily: 'Arial',
   },
-  image: {
-    width: 50,
-    height: 50,
-    marginHorizontal: 5,
+  rightAligned: {
+    alignSelf: 'flex-end',
   },
+  cusomterContainer: {
+    
+  },
+  textCusomter: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 5,
+    color: COLORS.text,
+    fontFamily: 'Arial',
+  }
 });
 
 export default styles;
