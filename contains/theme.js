@@ -19,6 +19,10 @@ const COLORS = {
     loginAndlogout : '#fabf4a',
     colorsThongtin: '#5A5858',
     button : '#5a5858',
+    gray : '#D9D9D9',
+    backgroundColor: '#ffed8f',
+    backgroundSearch: '#fffcee',
+    textPrice: '#71ada2',
 }
 
 const FONTSIZE = {

@@ -30,10 +30,6 @@ const ProductScreen = () => {
         }
     }, [searchKeyword, dataProduct.products]);
 
-    //console.log('dataProduct', dataProduct);
-    //console.log('dataRoles', dataRoles);
-    // console.log(items.img);
-
     const renderTrashIcon = () => {
         return (
             <TouchableOpacity onPress={() => console.log('Delete product')}>
@@ -46,12 +42,10 @@ const ProductScreen = () => {
     };
 
     const handleSearchIconPress = () => {
-        // Xử lý khi hình ảnh tìm kiếm được bấm vào
         console.log('Search icon pressed');
     };
 
     const handleProductPress = (id) => {
-        // Xử lý khi sản phẩm được bấm vào, có thể điều hướng đến trang chi tiết sản phẩm với productId
         navigation.push('CategoryProductScreen', { id: id });
     };
 
@@ -60,14 +54,14 @@ const ProductScreen = () => {
             <View style={styles.searchContainer}>
                 <TextInput
                     style={styles.searchInput}
-                    placeholder="Search by Name Product"
+                    placeholder="Search by Product Name"
                     onChangeText={text => setSearchKeyword(text)}
                     value={searchKeyword}
                 />
-                <TouchableOpacity onPress={handleSearchIconPress}>
+                <TouchableOpacity onPress={() => console.log('Search icon pressed')}>
                     <Image
                         source={require('../../assets/images/Search.png')}
-                        style={styles.searchIcon}
+                        style={[styles.searchIcon, styles.searchIconPosition]}
                     />
                 </TouchableOpacity>
             </View>
@@ -77,6 +71,7 @@ const ProductScreen = () => {
                     <TouchableOpacity onPress={() => handleProductPress(item.id)}>
                         <View style={styles.productContainer}>
                             <View style={styles.product}>
+                            <Image source={item.img} style={styles.productImage} />
                                 <View style={styles.productInfo}>
                                     <Text style={styles.productName}>Name: {item.name}</Text>
                                     <View style={styles.productPriceQuantityContainer}>
@@ -87,7 +82,6 @@ const ProductScreen = () => {
                                 {renderTrashIcon()}
                             </View>
                         </View>
-
                     </TouchableOpacity>
                 )}
                 keyExtractor={item => item.id.toString()}
@@ -96,4 +90,4 @@ const ProductScreen = () => {
     );
 }
 
-export default ProductScreen
+export default ProductScreen;

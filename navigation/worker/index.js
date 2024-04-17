@@ -51,12 +51,14 @@ const MyTabsWorker = () => {
         tabBarInactiveTintColor: COLORS.second,
         tabBarStyle: {
           backgroundColor: COLORS.yellow,
-          height: 65,
-          paddingBottom: 10
+          height: 70,
+          paddingBottom: 1
         },
         tabBarLabelStyle: {
-          fontSize: 13
+          fontSize: 16
         },
+        tabBarActiveBackgroundColor: COLORS.gray, // Màu nền khi được chọn
+        tabBarInactiveBackgroundColor: COLORS.white, // Màu nền khi không được chọn
         headerShown: false
       })}
     >

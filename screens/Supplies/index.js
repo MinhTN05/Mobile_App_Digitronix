@@ -66,7 +66,7 @@ const SuppliesScreen = () => {
                 <TouchableOpacity onPress={handleSearchIconPress}>
                     <Image
                         source={require('../../assets/images/Search.png')}
-                        style={styles.searchIcon}
+                        style={[styles.searchIcon, styles.searchIconPosition]}
                     />
                 </TouchableOpacity>
             </View>

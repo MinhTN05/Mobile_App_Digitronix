@@ -11,49 +11,51 @@ import OnDeliverStackScreen from './OnDeliverNavigation';
 const Tab = createBottomTabNavigator();
 
 const MyTabsDriver = () => {
-    return (
-        <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
 
-            switch (route.name) {
-              case 'Driver':
-                return (
-                  <Image
-                    source={focused ? require('../../assets/images/Van_2.png') : require('../../assets/images/Van_1.png')}
-                    style={{ width: 24, height: 24 }}
-                  />
-                );
-                case 'History':
-                return (
-                  <Image
-                    source={focused ? require('../../assets/images/Shipped_2.png') : require('../../assets/images/Shipped_1.png')}
-                    style={{ width: 24, height: 24 }}
-                  />
-                );
-              default:
-                break;
-            }
-            // You can return any component that you like here!
-            return <Ionicons name={iconName} size={size} color={color} />;
-          },
-          tabBarActiveTintColor: COLORS.second,
-          tabBarInactiveTintColor: COLORS.second,
-          tabBarStyle : {
-            backgroundColor : COLORS.yellow,
-            height : 65,
-            paddingBottom : 10
-          },
-          tabBarLabelStyle : {
-            fontSize : 13
-          },
-          headerShown : false
-        })}
-      >
-        <Tab.Screen name="Driver" component={DeliveriedStackScreen} options={{title : 'Deliveried'}}/>
-        <Tab.Screen name="History" component={OnDeliverStackScreen} options={{title : 'On Deliver'}}/>
-      </Tab.Navigator>
-    )
+          switch (route.name) {
+            case 'Driver':
+              return (
+                <Image
+                  source={focused ? require('../../assets/images/Van_2.png') : require('../../assets/images/Van_1.png')}
+                  style={{ width: 24, height: 24 }}
+                />
+              );
+            case 'History':
+              return (
+                <Image
+                  source={focused ? require('../../assets/images/Shipped_2.png') : require('../../assets/images/Shipped_1.png')}
+                  style={{ width: 24, height: 24 }}
+                />
+              );
+            default:
+              break;
+          }
+          // You can return any component that you like here!
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+        tabBarActiveTintColor: COLORS.second,
+        tabBarInactiveTintColor: COLORS.second,
+        tabBarStyle: {
+          backgroundColor: COLORS.yellow,
+          height: 70,
+          paddingBottom: 1
+        },
+        tabBarLabelStyle: {
+          fontSize: 16
+        },
+        tabBarActiveBackgroundColor: COLORS.gray, // Màu nền khi được chọn
+        tabBarInactiveBackgroundColor: COLORS.white, // Màu nền khi không được chọn
+        headerShown: false
+      })}
+    >
+      <Tab.Screen name="Driver" component={DeliveriedStackScreen} options={{ title: 'Deliveried' }} />
+      <Tab.Screen name="History" component={OnDeliverStackScreen} options={{ title: 'On Deliver' }} />
+    </Tab.Navigator>
+  )
 }
 export default MyTabsDriver

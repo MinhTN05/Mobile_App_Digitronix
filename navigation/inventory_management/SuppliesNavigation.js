@@ -11,7 +11,7 @@ const SuppliesStackScreen = () => {
     <SuppliesStack.Navigator
         screenOptions={{
             headerStyle : {
-                backgroundColor : COLORS.yellow
+                backgroundColor : COLORS.white
             },
             headerTintColor : COLORS.second
         }}
