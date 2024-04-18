@@ -26,7 +26,7 @@ const LoginScreen = () => {
             await dispatch(SetUserName(username));
 
             switch (roleId) {
-                case 1:
+                case 3:
                     navigation.navigate('MyTabs');
                     break;
                 case 2:
