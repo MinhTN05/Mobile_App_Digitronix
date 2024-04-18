@@ -20,14 +20,14 @@ const MyTabsProduction = () => {
             case 'Production':
               return (
                 <Image
-                  source={focused ? require('../../assets/images/Product_2.png') : require('../../assets/images/Product_1.png')}
+                  source={focused ? require('../../assets/images/Manufacturing_2.png') : require('../../assets/images/Manufacturing_1.png')}
                   style={{ width: 24, height: 24 }}
                 />
               );
-            case 'Production Detailed':
+            case 'Order Status':
               return (
                 <Image
-                  source={focused ? require('../../assets/images/Materials_2.png') : require('../../assets/images/Materials_1.png')}
+                  source={focused ? require('../../assets/images/Mobile Order_2.png') : require('../../assets/images/Mobile Order_1.png')}
                   style={{ width: 24, height: 24 }}
                 />
               );
@@ -53,7 +53,7 @@ const MyTabsProduction = () => {
       })}
     >
       <Tab.Screen name="Production" component={ManufactureStackScreen} />
-      <Tab.Screen name="Production Detailed" component={OrderStatusStackScreen} />
+      <Tab.Screen name="Order Status" component={OrderStatusStackScreen} />
     </Tab.Navigator>
   )
 }
