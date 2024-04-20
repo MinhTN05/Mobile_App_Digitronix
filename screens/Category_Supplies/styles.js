@@ -1,32 +1,34 @@
 import { StyleSheet } from "react-native";
+import { COLORS } from "../../contains";
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20, // Tăng khoảng cách phần lề
+        padding: 20,
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: COLORS.backgroundColor,
     },
     productTitle: {
-        fontSize: 24, // Tăng kích thước chữ
+        fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 20,
     },
     detailContainer: {
         marginBottom: 20,
-        width: '100%', // Rộng ra hết phần màn hình
+        width: '100%',
     },
     materialDetails: {
         top: 20,
         flexDirection: 'row',
         marginBottom: 15, // Tăng khoảng cách giữa các phần tử
-        alignItems: 'center', // Căn chỉnh các phần tử theo chiều ngang
-        width: '100%', // Rộng ra hết phần màn hình
+        alignItems: 'center',
+        width: '100%',
     },
     detailLabel: {
         fontWeight: 'bold',
         marginRight: 10, // Tăng khoảng cách giữa nhãn và nội dung
-        fontSize: 18, // Tăng kích thước chữ
+        fontSize: 18,
     },
     detailText: {
         flex: 1,
@@ -35,8 +37,8 @@ const styles = StyleSheet.create({
         textAlign: 'left', // Canh lề văn bản về phía trái
     },
     productImage: {
-        width: 80, // Tăng kích thước hình ảnh
-        height: 80, // Tăng kích thước hình ảnh
+        width: 80,
+        height: 80, 
         marginRight: 10, // Tăng khoảng cách giữa hình ảnh và văn bản
     },
     buttonContainer: {
@@ -56,7 +58,7 @@ const styles = StyleSheet.create({
     buttonText: {
         marginRight: 5,
         color: 'white',
-        fontSize: 18, // Tăng kích thước chữ
+        fontSize: 18,
     },
     editButton: {
         backgroundColor: 'blue',
