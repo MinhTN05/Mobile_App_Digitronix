@@ -1,27 +1,45 @@
-import React, { useState } from 'react';
-import { View, Text, FlatList, Image, TouchableOpacity, TextInput } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, FlatList, TouchableOpacity, Image, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
-
+import { fetchProduction } from '../../store/slices/production';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ManufactureScreen = () => {
-
     const navigation = useNavigation();
+    const dispatch = useDispatch();
+    const productionData = useSelector(state => state.Production.items);
     const [searchKeyword, setSearchKeyword] = useState('');
-    const [manufactureProcesses, setManufactureProcesses] = useState([
-        { id: 1, process: '1: ABC', start:'07/07/2024', end:'24/07/2024' },
-        { id: 2, process: '2: 123', start:'07/07/2024', end:'24/07/2024' },
-    ]);
+    const [filteredProductions, setFilteredProductions] = useState([]);
 
-    const navigateToDetail = () => {
-        navigation.push('CategoryManufactureScreen', {});
-    }
+    useEffect(() => {
+        dispatch(fetchProduction());
+    }, [dispatch]);
 
-    const handleSearch = () => {
-        const filteredProcesses = manufactureProcesses.filter(process =>
-            process.process.toLowerCase().includes(searchKeyword.toLowerCase())
+    useEffect(() => {
+        if (searchKeyword.trim() === '') {
+            setFilteredProductions(productionData);
+        } else {
+            const filtered = productionData.filter(production =>
+                production.name.toLowerCase().includes(searchKeyword.toLowerCase())
+            );
+            setFilteredProductions(filtered);
+        }
+    }, [searchKeyword, productionData]);
+
+    const renderTrashIcon = () => {
+        return (
+            <TouchableOpacity onPress={() => console.log('Delete product')}>
+                <Image
+                    source={require('../../assets/images/Delete_1.png')}
+                    style={styles.trashIcon}
+                />
+            </TouchableOpacity>
         );
-        setManufactureProcesses(filteredProcesses);
+    };
+
+    const handleProductionPress = (id) => {
+        navigation.push('CategoryManufactureScreen', { id: id });
     };
 
     return (
@@ -29,25 +47,32 @@ const ManufactureScreen = () => {
             <View style={styles.searchContainer}>
                 <TextInput
                     style={styles.searchInput}
-                    placeholder="Search by Manufacture Process"
-                    value={searchKeyword}
+                    placeholder="Search by Production Name"
                     onChangeText={text => setSearchKeyword(text)}
+                    value={searchKeyword}
                 />
-                <TouchableOpacity onPress={handleSearch}>
+                <TouchableOpacity onPress={() => console.log('Search icon pressed')}>
                     <Image
                         source={require('../../assets/images/Search.png')}
-                        style={styles.searchIcon}
+                        style={[styles.searchIcon, styles.searchIconPosition]}
                     />
                 </TouchableOpacity>
             </View>
             <FlatList
-                data={manufactureProcesses}
+                data={filteredProductions}
                 renderItem={({ item }) => (
-                    <TouchableOpacity onPress={navigateToDetail}>
-                        <View style={[styles.box, styles.product]}>
-                            <Text style={styles.productText}>Process: {item.process}</Text>
-                            <Text style={styles.productDay}>Start: {item.start}</Text>
-                            <Text style={styles.productDay}>End: {item.end}</Text>
+                    <TouchableOpacity onPress={() => handleProductionPress(item.id)}>
+                        <View style={styles.productionContainer}>
+                            <View style={styles.production}>
+                                <View style={styles.productionInfo}>
+                                    <Text style={styles.productionName}>ID: {item.id}</Text>
+                                    <View style={styles.productionStatusQuantityContainer}>
+                                        <Text style={styles.productionStatus}>Status: {item.status}</Text>
+                                        <Text style={styles.productionQuantity}>Quantity: {item.quantity}</Text>
+                                    </View>
+                                </View>
+                                {renderTrashIcon()}
+                            </View>
                         </View>
                     </TouchableOpacity>
                 )}
@@ -57,4 +82,4 @@ const ManufactureScreen = () => {
     );
 };
 
-export default ManufactureScreen
+export default ManufactureScreen;
