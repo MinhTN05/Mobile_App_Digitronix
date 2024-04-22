@@ -16,10 +16,10 @@ const OrderStatusStackScreen = () => {
             headerTintColor : COLORS.second
         }}
     >
-      <OrderStatusStack.Screen name="OrderStatusScreen" component={OrderStatusScreen} options={{title : 'Production Status', headerLeft : () => (
+      <OrderStatusStack.Screen name="OrderStatusScreen" component={OrderStatusScreen} options={{title : 'Order', headerLeft : () => (
                                                                               <IconHeader />
                                                                           )}}/>
-      <OrderStatusStack.Screen name="CategoryOrderStatusScreen" component={CategoryOrderStatusScreen} options={{title : 'Production Detailed'}}/>
+      <OrderStatusStack.Screen name="CategoryOrderStatusScreen" component={CategoryOrderStatusScreen} options={{title : 'Order Detailed'}}/>
     </OrderStatusStack.Navigator>
   );
 }

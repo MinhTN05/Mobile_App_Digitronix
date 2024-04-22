@@ -24,7 +24,7 @@ const MyTabsProduction = () => {
                   style={{ width: 24, height: 24 }}
                 />
               );
-            case 'Order Status':
+            case 'Order':
               return (
                 <Image
                   source={focused ? require('../../assets/images/Mobile Order_2.png') : require('../../assets/images/Mobile Order_1.png')}
@@ -53,7 +53,7 @@ const MyTabsProduction = () => {
       })}
     >
       <Tab.Screen name="Production" component={ManufactureStackScreen} />
-      <Tab.Screen name="Order Status" component={OrderStatusStackScreen} />
+      <Tab.Screen name="Order" component={OrderStatusStackScreen} />
     </Tab.Navigator>
   )
 }

@@ -27,16 +27,16 @@ const ManufactureScreen = () => {
         }
     }, [searchKeyword, productionData]);
 
-    const renderTrashIcon = () => {
-        return (
-            <TouchableOpacity onPress={() => console.log('Delete product')}>
-                <Image
-                    source={require('../../assets/images/Delete_1.png')}
-                    style={styles.trashIcon}
-                />
-            </TouchableOpacity>
-        );
-    };
+    // const renderTrashIcon = () => {
+    //     return (
+    //         <TouchableOpacity onPress={() => console.log('Delete product')}>
+    //             <Image
+    //                 source={require('../../assets/images/Delete_1.png')}
+    //                 style={styles.trashIcon}
+    //             />
+    //         </TouchableOpacity>
+    //     );
+    // };
 
     const handleProductionPress = (id) => {
         navigation.push('CategoryManufactureScreen', { id: id });
@@ -65,13 +65,13 @@ const ManufactureScreen = () => {
                         <View style={styles.productionContainer}>
                             <View style={styles.production}>
                                 <View style={styles.productionInfo}>
-                                    <Text style={styles.productionName}>ID: {item.id}</Text>
+                                    <Text style={styles.productionName}>Name: {item.product_name}</Text>
                                     <View style={styles.productionStatusQuantityContainer}>
                                         <Text style={styles.productionStatus}>Status: {item.status}</Text>
                                         <Text style={styles.productionQuantity}>Quantity: {item.quantity}</Text>
                                     </View>
                                 </View>
-                                {renderTrashIcon()}
+                                {/* {renderTrashIcon()} */}
                             </View>
                         </View>
                     </TouchableOpacity>

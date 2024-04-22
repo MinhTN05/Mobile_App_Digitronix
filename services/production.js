@@ -13,7 +13,8 @@ const ProductionService = {
         total_cost,
         user_id,
         process_id,
-        order_id
+        order_id,
+        product_name
     } = {}) {
         return AsyncStorage.getItem('access_token').then(token => {
             return api.call().get('productions', {
@@ -28,7 +29,8 @@ const ProductionService = {
                     total_cost,
                     user_id,
                     process_id,
-                    order_id
+                    order_id,
+                    product_name
                 },
                 headers: {
                     Authorization: `Bearer ${token}`
