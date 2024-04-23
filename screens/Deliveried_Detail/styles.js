@@ -32,6 +32,11 @@ const styles = StyleSheet.create({
     overflow: 'hidden', // Ẩn bất kỳ nội dung nào vượt ra khỏi khung hiển thị
     textAlign: 'left', // Canh lề văn bản về phía trái
   },
+  map: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
 });
 
 export default styles;
