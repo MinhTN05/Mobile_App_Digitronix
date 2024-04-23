@@ -16,13 +16,13 @@ export const fetchDeliveries = createAsyncThunk(
 const DeliverySlice = createSlice({
     name: 'Delivery',
     initialState: {
-        deliveries: [],
+        item: [],
     },
     reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(fetchDeliveries.fulfilled, (state, action) => {
-                state.deliveries = action.payload;
+                state.item = action.payload;
             })
             .addCase(fetchDeliveries.rejected, (state, action) => {
                 console.log(action.error.message);
@@ -30,5 +30,5 @@ const DeliverySlice = createSlice({
     },
 });
 
-export const {} = DeliverySlice.actions;
+export const { } = DeliverySlice.actions;
 export default DeliverySlice.reducer;

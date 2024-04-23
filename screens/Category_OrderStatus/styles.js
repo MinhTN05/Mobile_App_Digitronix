@@ -20,6 +20,12 @@ const styles = StyleSheet.create({
         alignItems: 'center', // Căn chỉnh các phần tử theo chiều ngang
         width: '100%',
     },
+    orderDetailResponses: {
+        flexDirection: 'row',
+        marginBottom: 15,
+        alignItems: 'center',
+        width: '100%',
+    },
     detailLabel: {
         fontWeight: 'bold',
         marginRight: 10, // Tăng khoảng cách giữa nhãn và nội dung
@@ -27,6 +33,14 @@ const styles = StyleSheet.create({
     },
     detailText: {
         flex: 1,
+        fontSize: 18,
+        overflow: 'hidden', // Ẩn bất kỳ nội dung nào vượt ra khỏi khung hiển thị
+        textAlign: 'left', // Canh lề văn bản về phía trái
+    },
+    detailText1: {
+        flex: 1,
+        fontWeight: 'bold',
+        color: COLORS.red,
         fontSize: 18,
         overflow: 'hidden', // Ẩn bất kỳ nội dung nào vượt ra khỏi khung hiển thị
         textAlign: 'left', // Canh lề văn bản về phía trái
@@ -59,6 +73,32 @@ const styles = StyleSheet.create({
     buttonIcon: {
         width: 20,
         height: 20,
+    },
+    modalContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+    modalContent: {
+        backgroundColor: 'white',
+        padding: 20,
+        borderRadius: 10,
+        width: '80%',
+    },
+    modalDetail: {
+        marginTop: 10,
+    },
+    closeButton: {
+        alignSelf: 'flex-end',
+    },
+    closeButtonText: {
+        fontSize: 16,
+        color: 'blue',
+    },
+    noDataText: {
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 })
 

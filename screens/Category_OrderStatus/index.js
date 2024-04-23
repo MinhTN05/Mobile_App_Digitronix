@@ -81,12 +81,10 @@ const CategoryOrderStatusScreen = ({ route, navigation }) => {
                         <View style={styles.orderDetail}>
                             <Text style={styles.detailLabel}>Order Detail Responses:</Text>
                             {orderDetails.orderDetailResponses.map((orderDetailResponses, index) => (
-                                <View key={index} style={styles.orderDetail}>
-                                    <Text style={styles.detailText}>Quantity: {orderDetailResponses.quantity}</Text>
-                                    <Text style={styles.detailText}>Created At: {orderDetailResponses.created_at}</Text>
-                                    <Text style={styles.detailText}>Updated At: {orderDetailResponses.updated_at}</Text>
-                                    <Text style={styles.detailText}>Order ID: {orderDetailResponses.order_id}</Text>
-                                    <Text style={styles.detailText}>Product ID: {orderDetailResponses.product_id}</Text>
+                                <View key={index} style={styles.orderDetailResponses}>
+                                    <Text style={styles.detailLabel}>Quantity: {orderDetailResponses.quantity}</Text>
+                                    <Text style={styles.detailLabel}>Created At: {orderDetailResponses.created_at}</Text>
+                                    <Text style={styles.detailLabel}>Updated At: {orderDetailResponses.updated_at}</Text>
                                 </View>
                             ))}
                         </View>

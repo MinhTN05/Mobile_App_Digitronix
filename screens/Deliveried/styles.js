@@ -6,8 +6,74 @@ const screenWidth = Dimensions.get('window').width;
 export default StyleSheet.create({
   container: {
     flex: 1,
+    padding: 10,
+    backgroundColor: COLORS.backgroundColor,
+  },
+  searchContainer: {
+    flexDirection: 'row',
     alignItems: 'center',
-    top: 20,
+    marginBottom: 10,
+  },
+  searchInput: {
+    flex: 1,
+    backgroundColor: COLORS.backgroundSearch,
+    borderWidth: 1,
+    borderColor: COLORS.black,
+    borderRadius: 5,
+    padding: 10,
+    marginRight: 10,
+    position: 'relative',
+  },
+  searchIcon: {
+    width: 24,
+    height: 24,
+    marginRight: 5,
+  },
+  searchIconPosition: {
+    position: 'absolute',
+    right: 10,
+    transform: [{ translateY: -12 }],
+  },
+  deliveryContainer: {
+    backgroundColor: COLORS.white,
+    borderWidth: 1,
+    borderColor: COLORS.black,
+    borderRadius: 0,
+    marginBottom: 15,
+  },
+  delivery: {
+    flexDirection: 'row',
+    padding: 10,
+    alignItems: 'center',
+  },
+  deliveryInfo: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 5,
+    padding: 10,
+    marginBottom: 10,
+  },
+  deliveryName: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginBottom: 5,
+    color: COLORS.text,
+    fontFamily: 'Arial',
+  },
+  deliveryStatusQuantityContainer: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+  },
+  deliveryStatus: {
+    fontSize: 18,
+    color: COLORS.textPrice,
+    fontFamily: 'Arial',
+  },
+  deliveryQuantity: {
+    fontSize: 18,
+    color: COLORS.text,
+    fontFamily: 'Arial',
   },
   row: {
     flexDirection: 'row',
@@ -29,7 +95,6 @@ export default StyleSheet.create({
   },
   text: {
     fontSize: 18,
-    fontWeight: 'bold',
     marginBottom: 5,
     color: COLORS.text,
     fontFamily: 'Arial',
