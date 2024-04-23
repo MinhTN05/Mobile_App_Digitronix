@@ -4,12 +4,15 @@ import styles from './styles';
 import DeliveryService from '../../services/delivery';
 import { useDispatch } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+// import MapView, { Marker } from 'react-native-maps';
+// import Geolocation from '@react-native-community/geolocation';
 
 
 const DeliveriedDetailsScreen = ({ route, navigation }) => {
   const { id } = route.params;
   const [deliveryDetails, setDeliveryDetails] = useState(null);
   const [access_token, setAccessToken] = useState("");
+  const [currentLocation, setCurrentLocation] = useState(null);
   const dispatch = useDispatch();
 
 
@@ -32,9 +35,20 @@ const DeliveriedDetailsScreen = ({ route, navigation }) => {
     }
 
     fetchAccessToken();
-  }, [id]);
 
-  console.log(deliveryDetails);
+    // Lấy vị trí hiện tại
+    // Geolocation.getCurrentPosition(
+    //   position => {
+    //     setCurrentLocation({
+    //       latitude: position.coords.latitude,
+    //       longitude: position.coords.longitude
+    //     });
+    //   },
+    //   error => {
+    //     console.error('Error getting current location:', error);
+    //   }
+    // );
+  }, [id]);
 
   return (
     <View style={styles.container}>
@@ -52,9 +66,28 @@ const DeliveriedDetailsScreen = ({ route, navigation }) => {
             <View style={styles.orderResponse}>
               <Text style={styles.detailLabel}>Thanh tìm kiếm:</Text>
             </View>
-            <View style={styles.orderResponse1}>
-              <Text style={styles.detailLabel}>Map</Text>
-            </View>
+           {/* <View style={styles.orderResponse1}>
+              {currentLocation && (
+                <MapView
+                  style={styles.map}
+                  initialRegion={{
+                    latitude: currentLocation.latitude,
+                    longitude: currentLocation.longitude,
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0421,
+                  }}
+                >
+                  <Marker
+                    coordinate={{
+                      latitude: currentLocation.latitude,
+                      longitude: currentLocation.longitude,
+                    }}
+                    title="Your Location"
+                    description="You are here!"
+                  />
+                </MapView>
+              )}
+            </View> */}
           </View>
         </>
       ) : (
