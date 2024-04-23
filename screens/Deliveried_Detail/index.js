@@ -1,68 +1,67 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import styles from './styles';
-import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import DeliveryService from '../../services/delivery';
+import { useDispatch } from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const DeliveriedDetailsScreen = () => {
-  const [date, setDate] = useState(new Date());
-  const [showDatePicker, setShowDatePicker] = useState(false);
-  const [showTimePicker, setShowTimePicker] = useState(false);
+
+const DeliveriedDetailsScreen = ({ route, navigation }) => {
+  const { id } = route.params;
+  const [deliveryDetails, setDeliveryDetails] = useState(null);
+  const [access_token, setAccessToken] = useState("");
+  const dispatch = useDispatch();
+
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setDate(new Date());
-    }, 1000);
+    DeliveryService.getDeliveryDetail(id)
+      .then(response => {
+        setDeliveryDetails(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching order details:', error);
+      });
 
-    return () => clearInterval(interval);
-  }, []);
+    const fetchAccessToken = async () => {
+      try {
+        const token = await AsyncStorage.getItem("access_token");
+        setAccessToken(token);
+      } catch (error) {
+        console.error('Error fetching access token:', error);
+      }
+    }
 
-  const onChangeDate = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShowDatePicker(false);
-    setDate(currentDate);
-  };
+    fetchAccessToken();
+  }, [id]);
 
-  const onChangeTime = (event, selectedTime) => {
-    const currentTime = selectedTime || date;
-    setShowTimePicker(false);
-    setDate(currentTime);
-  };
+  console.log(deliveryDetails);
 
-    return (
-      <View style={styles.container}>
-        <View style={styles.cusomterContainer}>
-          <Text style={styles.textCusomter}>BVCSA</Text>
-        </View>
-        <View style={[styles.dateContainer, styles.rightAligned]}>
-          <TouchableOpacity onPress={() => setShowDatePicker(true)}>
-            <Text style={styles.dateText}>Date: {date.toDateString()}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => setShowTimePicker(true)}>
-            <Text style={styles.timeText}>Time: {date.toLocaleTimeString()}</Text>
-          </TouchableOpacity>
-          {showDatePicker && (
-            <DateTimePicker
-              testID="dateTimePicker"
-              value={date}
-              mode="date"
-              is24Hour={true}
-              display="default"
-              onChange={onChangeDate}
-            />
-          )}
-          {showTimePicker && (
-            <DateTimePicker
-              testID="dateTimePicker"
-              value={date}
-              mode="time"
-              is24Hour={true}
-              display="default"
-              onChange={onChangeTime}
-            />
-          )}
-        </View>
-      </View>
-    );
-  };
+  return (
+    <View style={styles.container}>
+      {deliveryDetails ? (
+        <>
+          <View style={styles.detailContainer}>
+            <View style={styles.orderResponse}>
+              <Text style={styles.detailLabel}>Customer Name:</Text>
+              <Text style={styles.detailText}>{deliveryDetails.orderResponse.customer_name}</Text>
+            </View>
+            <View style={styles.orderResponse}>
+              <Text style={styles.detailLabel}>Address:</Text>
+              <Text style={styles.detailText}>{deliveryDetails.orderResponse.customerAddress}</Text>
+            </View>
+            <View style={styles.orderResponse}>
+              <Text style={styles.detailLabel}>Thanh tìm kiếm:</Text>
+            </View>
+            <View style={styles.orderResponse1}>
+              <Text style={styles.detailLabel}>Map</Text>
+            </View>
+          </View>
+        </>
+      ) : (
+        <Text>Loading...</Text>
+      )}
+    </View>
+  );
+};
 
-  export default DeliveriedDetailsScreen;
+export default DeliveriedDetailsScreen;

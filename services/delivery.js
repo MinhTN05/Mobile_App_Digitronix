@@ -28,6 +28,15 @@ const DeliveryService = {
             });
         });
     },
+    getDeliveryDetail(id) {
+        return AsyncStorage.getItem('access_token').then(token => {
+            return api.call().get(`deliveries/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+        });
+    }
 };
 
 export default DeliveryService;

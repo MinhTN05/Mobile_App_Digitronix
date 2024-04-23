@@ -4,43 +4,34 @@ import { COLORS } from '../../contains'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
-    padding: 20,
+    backgroundColor: COLORS.backgroundColor,
   },
-  dateContainer: {
-    borderWidth: 2,
-    borderColor: COLORS.boder, 
-    borderRadius: 5,
-    padding: 10,
+  detailContainer: {
+    top: 20,
+    left: 10,
     marginBottom: 20,
+    width: '100%',
   },
-  dateText: {
-    fontSize: 18,
+  orderResponse: {
+    flexDirection: 'row', // Đặt các phần tử con cùng hàng với nhau
+    alignItems: 'center', // Căn chỉnh các phần tử theo chiều dọc
+    marginBottom: 15, // Tăng khoảng cách giữa các hàng
+  },
+  orderResponse1: {
+    flexDirection: 'row', // Đặt các phần tử con cùng hàng với nhau
+    alignItems: 'center', // Căn chỉnh các phần tử theo chiều dọc
+    marginBottom: 15, // Tăng khoảng cách giữa các hàng
+  },
+  detailLabel: {
     fontWeight: 'bold',
-    marginBottom: 5,
-    color: COLORS.text,
-    fontFamily: 'Arial',
-  },
-  timeText: {
+    marginRight: 10, // Tăng khoảng cách giữa nhãn và nội dung
     fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 5,
-    color: COLORS.text,
-    fontFamily: 'Arial',
   },
-  rightAligned: {
-    alignSelf: 'flex-end',
-  },
-  cusomterContainer: {
-    
-  },
-  textCusomter: {
+  detailText: {
     fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 5,
-    color: COLORS.text,
-    fontFamily: 'Arial',
-  }
+    overflow: 'hidden', // Ẩn bất kỳ nội dung nào vượt ra khỏi khung hiển thị
+    textAlign: 'left', // Canh lề văn bản về phía trái
+  },
 });
 
 export default styles;
