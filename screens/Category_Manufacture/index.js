@@ -1,42 +1,66 @@
-import React from 'react';
-import {View, Text, TouchableOpacity, Image } from 'react-native';
-import styles from './styles'
+import React, { useEffect, useState } from 'react';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
+import styles from './styles';
+import ProductionService from '../../services/production';
+import { useDispatch } from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const CategoryManufactureScreen = ({navigation}) => {
+const CategoryManufactureScreen = ({ route, navigation }) => {
+    const { id } = route.params;
+    const [productionDetails, setProductionDetails] = useState(null);
+    const [access_token, setAccessToken] = useState("");
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        ProductionService.getProductionDetail(id)
+            .then(response => {
+                setProductionDetails(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching production details:', error);
+            });
+
+        const fetchAccessToken = async () => {
+            try {
+                const token = await AsyncStorage.getItem("access_token");
+                setAccessToken(token);
+            } catch (error) {
+                console.error('Error fetching access token:', error);
+            }
+        }
+
+        fetchAccessToken();
+    }, [id]);
+
     const navigateBack = () => {
-        // Điều hướng quay lại trang trước
         navigation.goBack();
     };
-    const navigateToEdit = () => {
-        // Điều hướng đến trang chỉnh sửa sản phẩm
-        // Thay 'EditProductScreen' bằng tên của trang chỉnh sửa sản phẩm của bạn
-        navigation.navigate('EditProductScreen');
-    };
+
     return (
         <View style={styles.container}>
-            <Text style={styles.productTitle}>Thông tin chi tiết sản xuất</Text>
-            <View style={styles.productDetail}>
-                <Text style={styles.detailLabel}>Quy trình sản xuất 1:</Text>
-                <Text style={styles.detailText}>ABC</Text>
-            </View>
-            <View style={styles.productDetail}>
-                <Text style={styles.detailLabel}>Mã sản xuất:</Text>
-                <Text style={styles.detailText}>123456</Text>
-            </View>
-            <View style={styles.productDetail}>
-                <Text style={styles.detailLabel}>chi phí:</Text>
-                <Text style={styles.detailText}>$100</Text>
-            </View>
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity onPress={navigateToEdit} style={[styles.button, styles.editButton]}>
-                    <Text style={styles.buttonText}>Chỉnh sửa</Text>
-                    <Image source={require('../../assets/images/edit.png')} style={styles.buttonIcon} />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={navigateBack} style={[styles.button, styles.backButton]}>
-                    <Text style={styles.buttonText}>Quay lại</Text>
-                    <Image source={require('../../assets/images/back.png')} style={styles.buttonIcon} />
-                </TouchableOpacity>
-            </View>
+            {productionDetails ? (
+                <>
+                    <View style={styles.detailContainer}>
+                        <View style={styles.productionDetail}>
+                            {productionDetails.production_detail?.map((productionDetailResponses, index) => (
+                                <View key={index} style={styles.productionDetailResponses}>
+                                    <Text style={styles.detailLabel}>Name: {productionDetailResponses.name}</Text>
+                                    <Text style={styles.detailLabel}>Status: {productionDetailResponses.status}</Text>
+                                    <Text style={styles.detailLabel}>Cost: {productionDetailResponses.cost}</Text>
+                                </View>
+                            ))}
+                        </View>
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        <TouchableOpacity onPress={navigateBack} style={[styles.button, styles.backButton]}>
+                            <Text style={styles.buttonText}>Quay lại</Text>
+                            <Image source={require('../../assets/images/back.png')} style={styles.buttonIcon} />
+                        </TouchableOpacity>
+                    </View>
+                </>
+            ) : (
+                <Text>Loading...</Text>
+            )}
         </View>
     )
 }

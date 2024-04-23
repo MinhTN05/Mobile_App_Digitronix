@@ -14,7 +14,8 @@ const ProductionService = {
         user_id,
         process_id,
         order_id,
-        product_name
+        product_name,
+        production_detail
     } = {}) {
         return AsyncStorage.getItem('access_token').then(token => {
             return api.call().get('productions', {
@@ -30,7 +31,8 @@ const ProductionService = {
                     user_id,
                     process_id,
                     order_id,
-                    product_name
+                    product_name,
+                    production_detail
                 },
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -38,5 +40,14 @@ const ProductionService = {
             });
         });
     },
+    getProductionDetail(id) {
+        return AsyncStorage.getItem('access_token').then(token => {
+            return api.call().get(`productions/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+        });
+    }
 }
 export default ProductionService;
