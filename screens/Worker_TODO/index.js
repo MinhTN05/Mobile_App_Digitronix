@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, TouchableOpacity, Image, TextInput } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
 import { fetchWorker } from '../../store/slices/worker';
@@ -101,7 +101,6 @@ const ToDoScreen = () => {
                     </TouchableOpacity>
                   </View>
                 </View>
-                {/* {renderTrashIcon()} */}
               </View>
             </View>
         )}

@@ -84,10 +84,10 @@ const CategorySuppliesScreen = ({ route, navigation }) => {
                         </View>
                     </View>
                     <View style={styles.buttonContainer}>
-                        <TouchableOpacity onPress={navigateToEdit} style={[styles.button, styles.editButton]}>
+                        {/* <TouchableOpacity onPress={navigateToEdit} style={[styles.button, styles.editButton]}>
                             <Text style={styles.buttonText}>Chỉnh sửa</Text>
                             <Image source={require('../../assets/images/edit.png')} style={styles.buttonIcon} />
-                        </TouchableOpacity>
+                        </TouchableOpacity> */}
                         <TouchableOpacity onPress={navigateBack} style={[styles.button, styles.backButton]}>
                             <Text style={styles.buttonText}>Quay lại</Text>
                             <Image source={require('../../assets/images/back.png')} style={styles.buttonIcon} />
