@@ -46,7 +46,7 @@ const CategorySuppliesScreen = ({ route, navigation }) => {
                 <>
                     {materialDetails ? (
                         <Image source={{
-                            uri: `${`http://localhost:1702/api/v1/materials/images/${materialDetails.image}`}`
+                            uri: `${`http://192.168.1.7:1702/api/v1/materials/images/${materialDetails.image}`}`
                         }} style={styles.image} />
                     ) : (
                         <Text>No image available</Text>

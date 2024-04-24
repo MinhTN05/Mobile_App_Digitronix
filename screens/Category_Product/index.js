@@ -47,7 +47,7 @@ const CategoryProductScreen = ({ route, navigation }) => {
                 <>
                     {productDetails ? (
                         <Image source={{
-                            uri: `${`http://localhost:1702/api/v1/products/images/${productDetails.img}`}`
+                            uri: `${`http://192.168.1.7:1702/api/v1/products/images/${productDetails.img}`}`
                         }} style={styles.image} />
                     ) : (
                         <Text>No image available</Text>
