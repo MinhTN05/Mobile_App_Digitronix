@@ -4,12 +4,13 @@ import { COLORS } from '../../contains'
 export default StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
-    padding: 20,
+    padding: 10,
+    backgroundColor: COLORS.backgroundColor,
   },
   dateContainer: {
     borderWidth: 2,
-    borderColor: COLORS.boder, 
+    borderColor: COLORS.black, 
+    backgroundColor: COLORS.white,
     borderRadius: 5,
     padding: 10,
     marginBottom: 20,
@@ -87,5 +88,42 @@ export default StyleSheet.create({
   },
   rightAligned: {
     alignSelf: 'flex-end',
+  },
+  workerContainer: {
+    backgroundColor: COLORS.white,
+    borderWidth: 1,
+    borderColor: COLORS.black,
+    borderRadius: 0,
+    marginBottom: 10,
+  },
+  worker: {
+    flexDirection: 'row',
+    padding: 10,
+    alignItems: 'center',
+  },
+  workerInfo: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  workerName: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginBottom: 5,
+    color: COLORS.text,
+    fontFamily: 'Arial',
+  },
+  workerStatusPriceContainer: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+  },
+  workerStatus: {
+    fontSize: 18,
+    color: COLORS.textPrice,
+    fontFamily: 'Arial',
+  },
+  workerTotalPrice: {
+    fontSize: 18,
+    color: COLORS.text,
+    fontFamily: 'Arial',
   },
 });

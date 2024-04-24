@@ -1,12 +1,36 @@
 import React, { useState, useEffect } from 'react';
+import { View, Text, FlatList, TouchableOpacity, Image, TextInput } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
-import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { fetchWorker } from '../../store/slices/worker';
+import { useDispatch, useSelector } from 'react-redux';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 const ToDoScreen = () => {
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const workerData = useSelector(state => state.Worker.items);
+  const [searchKeyword, setSearchKeyword] = useState('');
+  const [filteredWorker, setFilteredWorker] = useState([]);
+
   const [date, setDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [showTimePicker, setShowTimePicker] = useState(false);
+
+  useEffect(() => {
+    dispatch(fetchWorker());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (searchKeyword.trim() === '') {
+      setFilteredWorker(workerData);
+    } else {
+      const filtered = workerData.filter(worker =>
+        worker.name.toLowerCase().includes(searchKeyword.toLowerCase())
+      );
+      setFilteredWorker(filtered);
+    }
+  }, [searchKeyword, workerData]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -58,29 +82,31 @@ const ToDoScreen = () => {
           />
         )}
       </View>
-      <View style={styles.textContainer}>
-        <View style={styles.texttext}>
-          <View style={styles.rowContainer}>
-            <View style={styles.columnContainer}>
-              <Text style={styles.label}>Production_Detail</Text>
+      <FlatList
+        data={filteredWorker}
+        renderItem={({ item }) => (
+            <View style={styles.workerContainer}>
+              <View style={styles.worker}>
+                <View style={styles.workerInfo}>
+                  <Text style={styles.workerName}>Name: {item.name}</Text>
+                  <View style={styles.workerStatusPriceContainer}>
+                    <Text style={styles.workerStatus}>Status: {item.status}</Text>
+                    <Text style={styles.workerTotalPrice}>In material quantity: {item.in_material_quantity}</Text>
+                    <Text style={styles.workerTotalPrice}>Out quantity: {item.out_quantity}</Text>
+                  </View>
+                  <View style={[styles.columnContainer, styles.rightAligned]}>
+                    <TouchableOpacity style={styles.startButton}>
+                      <Image source={require('../../assets/images/Start.png')} style={styles.startIcon} />
+                      <Text style={styles.startText}>Start</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+                {/* {renderTrashIcon()} */}
+              </View>
             </View>
-            <View style={[styles.columnContainer, styles.quantityContainer]}>
-              <Text style={styles.label}>Quantity: 500</Text>
-            </View>
-          </View>
-          <View style={styles.rowContainer}>
-            <View style={styles.columnContainer}>
-              <Text style={styles.label}>Time: {date.toLocaleTimeString()}</Text>
-            </View>
-            <View style={[styles.columnContainer, styles.rightAligned]}>
-              <TouchableOpacity style={styles.startButton}>
-                <Image source={require('../../assets/images/Start.png')} style={styles.startIcon} />
-                <Text style={styles.startText}>Start</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-      </View>
+        )}
+        keyExtractor={item => item.id.toString()}
+      />
     </View>
   );
 }
