@@ -21,9 +21,12 @@ const LoginScreen = () => {
     const handleLogin = async () => {
         try {
             const response = await dispatch(fetchAsyncLogin({ username, password }));
-            const { token, roleId } = response.payload;
+            const { token, roleId, userId } = response.payload;
             await AsyncStorage.setItem('access_token', token);
+            await AsyncStorage.setItem('user_id', userId.toString());
             await dispatch(SetUserName(username));
+
+            // console.log("user_Id:",userId);
 
             switch (roleId) {
                 case 3:

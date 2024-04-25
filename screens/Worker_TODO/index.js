@@ -5,6 +5,7 @@ import styles from './styles';
 import { fetchWorker } from '../../store/slices/worker';
 import { useDispatch, useSelector } from 'react-redux';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ToDoScreen = () => {
   const navigation = useNavigation();
@@ -20,6 +21,23 @@ const ToDoScreen = () => {
   useEffect(() => {
     dispatch(fetchWorker());
   }, [dispatch]);
+
+  useEffect(() => {
+    const fetchUserId = async () => {
+      try {
+        const userId = await AsyncStorage.getItem('user_id');
+        // console.log("userId from AsyncStorage:", userId);
+        // Sau khi lấy userId thành công, tiếp tục xử lý lọc danh sách công việc dựa trên userId
+        const filtered = workerData.filter(worker => worker.user_id == userId);
+        // console.log(filtered)
+        setFilteredWorker(filtered);
+      } catch (error) {
+        console.error("Error fetching userId from AsyncStorage:", error);
+      }
+    };
+
+    fetchUserId();
+  }, [workerData]);
 
   useEffect(() => {
     if (searchKeyword.trim() === '') {
@@ -85,24 +103,25 @@ const ToDoScreen = () => {
       <FlatList
         data={filteredWorker}
         renderItem={({ item }) => (
-            <View style={styles.workerContainer}>
-              <View style={styles.worker}>
-                <View style={styles.workerInfo}>
-                  <Text style={styles.workerName}>Name: {item.name}</Text>
-                  <View style={styles.workerStatusPriceContainer}>
-                    <Text style={styles.workerStatus}>Status: {item.status}</Text>
-                    <Text style={styles.workerTotalPrice}>In material quantity: {item.in_material_quantity}</Text>
-                    <Text style={styles.workerTotalPrice}>Out quantity: {item.out_quantity}</Text>
-                  </View>
-                  <View style={[styles.columnContainer, styles.rightAligned]}>
-                    <TouchableOpacity style={styles.startButton}>
-                      <Image source={require('../../assets/images/Start.png')} style={styles.startIcon} />
-                      <Text style={styles.startText}>Start</Text>
-                    </TouchableOpacity>
-                  </View>
+          <View style={styles.workerContainer}>
+            <View style={styles.worker}>
+              <View style={styles.workerInfo}>
+                <Text style={styles.workerName}>Name: {item.name}</Text>
+                <View style={styles.workerStatusPriceContainer}>
+                  <Text style={styles.workerStatus}>Status: {item.status}</Text>
+                  <Text style={styles.workerTotalPrice}>In material quantity: {item.in_material_quantity}</Text>
+                  <Text style={styles.workerTotalPrice}>Out quantity: {item.out_quantity}</Text>
+                  <Text style={styles.workerTotalPrice}>Status: {item.status}</Text>
+                </View>
+                <View style={[styles.columnContainer, styles.rightAligned]}>
+                  <TouchableOpacity style={styles.startButton}>
+                    <Image source={require('../../assets/images/Start.png')} style={styles.startIcon} />
+                    <Text style={styles.startText}>Start</Text>
+                  </TouchableOpacity>
                 </View>
               </View>
             </View>
+          </View>
         )}
         keyExtractor={item => item.id.toString()}
       />

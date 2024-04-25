@@ -19,12 +19,13 @@ const authSlice = createSlice({
         isLogin: false,
         loginError: null,
         username: null,
+        userId: null,
     },
     reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(fetchAsyncLogin.fulfilled, (state, action) => {
-                const { token, username, roleId } = action.payload;
+                const { token, username, roleId, userId  } = action.payload;
                 AsyncStorage.setItem('access_token', token);
                 AsyncStorage.setItem('username', username);
                 return {
@@ -33,7 +34,8 @@ const authSlice = createSlice({
                     roleId: roleId,
                     isLogin: true,
                     loginError: null,
-                    username: username
+                    username: username,
+                    userId: userId,
                 }
             })
             .addCase(fetchAsyncLogin.rejected, (state, action) => {
