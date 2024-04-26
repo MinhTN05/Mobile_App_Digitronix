@@ -11,8 +11,8 @@ const ToDoScreen = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const workerData = useSelector(state => state.Worker.items);
-  const [searchKeyword, setSearchKeyword] = useState('');
   const [filteredWorker, setFilteredWorker] = useState([]);
+  const [statusFilter, setStatusFilter] = useState("todo"); // State để lưu trữ trạng thái bạn muốn lọc
 
   const [date, setDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
@@ -26,10 +26,7 @@ const ToDoScreen = () => {
     const fetchUserId = async () => {
       try {
         const userId = await AsyncStorage.getItem('user_id');
-        // console.log("userId from AsyncStorage:", userId);
-        // Sau khi lấy userId thành công, tiếp tục xử lý lọc danh sách công việc dựa trên userId
-        const filtered = workerData.filter(worker => worker.user_id == userId);
-        // console.log(filtered)
+        const filtered = workerData.filter(worker => worker.user_id == userId && worker.status === statusFilter); // Lọc dữ liệu theo trạng thái
         setFilteredWorker(filtered);
       } catch (error) {
         console.error("Error fetching userId from AsyncStorage:", error);
@@ -37,18 +34,7 @@ const ToDoScreen = () => {
     };
 
     fetchUserId();
-  }, [workerData]);
-
-  useEffect(() => {
-    if (searchKeyword.trim() === '') {
-      setFilteredWorker(workerData);
-    } else {
-      const filtered = workerData.filter(worker =>
-        worker.name.toLowerCase().includes(searchKeyword.toLowerCase())
-      );
-      setFilteredWorker(filtered);
-    }
-  }, [searchKeyword, workerData]);
+  }, [workerData, statusFilter]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -111,7 +97,6 @@ const ToDoScreen = () => {
                   <Text style={styles.workerStatus}>Status: {item.status}</Text>
                   <Text style={styles.workerTotalPrice}>In material quantity: {item.in_material_quantity}</Text>
                   <Text style={styles.workerTotalPrice}>Out quantity: {item.out_quantity}</Text>
-                  <Text style={styles.workerTotalPrice}>Status: {item.status}</Text>
                 </View>
                 <View style={[styles.columnContainer, styles.rightAligned]}>
                   <TouchableOpacity style={styles.startButton}>
