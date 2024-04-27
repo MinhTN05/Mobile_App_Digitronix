@@ -13,7 +13,6 @@ export const fetchWorker = createAsyncThunk(
     }
 );
 
-// Thêm mã lỗi vào phần .rejected của hàm updateWorker
 export const updateWorker = createAsyncThunk(
     'worker/updateWorker',
     async ({ id, name, in_material_quantity, time_start, status, cost, user_id, process_detail_id, production_id, out_quantity }, thunkAPI) => {
@@ -21,7 +20,19 @@ export const updateWorker = createAsyncThunk(
             await WorkerService.updateProductionDetails(id, { name, in_material_quantity, time_start, status, cost, user_id, process_detail_id, production_id, out_quantity });
             return { id, name, in_material_quantity, time_start, status, cost, user_id, process_detail_id, production_id, out_quantity };
         } catch (error) {
-            return thunkAPI.rejectWithValue(error.message); // Trả về thông điệp lỗi
+            return thunkAPI.rejectWithValue(error.message);
+        }
+    }
+);
+
+export const updateDone = createAsyncThunk(
+    'done/updateDone',
+    async ({ id, name, in_material_quantity, time_end, status, cost, user_id, process_detail_id, production_id, out_quantity }, thunkAPI) => {
+        try {
+            await WorkerService.updateDoneDetails(id, { name, in_material_quantity, time_end, status, cost, user_id, process_detail_id, production_id, out_quantity });
+            return { id, name, in_material_quantity, time_end, status, cost, user_id, process_detail_id, production_id, out_quantity };
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.message);
         }
     }
 );
@@ -50,6 +61,17 @@ const WorkerSlice = createSlice({
             })
             // Xử lý khi có lỗi xảy ra trong quá trình thực thi
             .addCase(updateWorker.rejected, (state, action) => {
+                console.log("Update worker error:", action.error.message); // In ra thông điệp lỗi
+            })
+            .addCase(updateDone.fulfilled, (state, action) => {
+                const updateDone = action.payload;
+                const index = state.items.findIndex(worker => worker.id === updateDone.id);
+                if (index !== -1) {
+                    state.items[index] = updateDone;
+                }
+            })
+            // Xử lý khi có lỗi xảy ra trong quá trình thực thi
+            .addCase(updateDone.rejected, (state, action) => {
                 console.log("Update worker error:", action.error.message); // In ra thông điệp lỗi
             });
     },

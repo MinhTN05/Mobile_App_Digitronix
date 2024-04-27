@@ -49,11 +49,29 @@ const WorkerService = {
     },
     updateProductionDetails(id, { name, in_material_quantity, time_start, status, cost, user_id, process_detail_id, production_id, out_quantity }) {
         return AsyncStorage.getItem('access_token').then(token => {
-            console.log("data: ", name, in_material_quantity, time_start, status, cost, user_id, process_detail_id, production_id, out_quantity)
             return api.call().put(`production_details/${id}`, {
                 name,
                 in_material_quantity,
                 time_start,
+                status,
+                cost,
+                user_id,
+                process_detail_id,
+                production_id,
+                out_quantity
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+        });
+    },
+    updateDoneDetails(id, { name, in_material_quantity, time_end, status, cost, user_id, process_detail_id, production_id, out_quantity }) {
+        return AsyncStorage.getItem('access_token').then(token => {
+            return api.call().put(`production_details/${id}`, {
+                name,
+                in_material_quantity,
+                time_end,
                 status,
                 cost,
                 user_id,

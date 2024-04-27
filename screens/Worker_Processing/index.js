@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
 import { fetchWorker } from '../../store/slices/worker';
 import { useDispatch, useSelector } from 'react-redux';
+import { updateDone } from '../../store/slices/worker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ProcessingScreen = () => {
@@ -12,7 +13,6 @@ const ProcessingScreen = () => {
   const workerData = useSelector(state => state.Worker.items);
   const [filteredWorker, setFilteredWorker] = useState([]);
   const [statusFilter, setStatusFilter] = useState("processing");// State để lưu trữ trạng thái bạn muốn lọc
-
   const [date, setDate] = useState(new Date());
 
   useEffect(() => {
@@ -41,6 +41,38 @@ const ProcessingScreen = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const handleStart = async (item) => {
+    try {
+      const name = item.name;
+      const id = item.id;
+      const in_material_quantity = item.in_material_quantity;
+      const currentTime = new Date();
+      const formattedDate = currentTime.toISOString().split('T')[0];
+      const formattedTime = currentTime.toLocaleTimeString();
+      const time_end = `${formattedDate} ${formattedTime}`;
+      const status = "done";
+      const cost = item.cost;
+      const user_id = item.user_id;
+      const process_detail_id = item.process_detail_id;
+      const production_id = item.production_id;
+      const out_quantity = item.out_quantity;
+      dispatch(updateDone({
+        id,
+        name,
+        in_material_quantity,
+        time_end,
+        status,
+        cost,
+        user_id,
+        process_detail_id,
+        production_id,
+        out_quantity,
+      }));
+    } catch (error) {
+      console.error("Error updating worker:", error);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={[styles.dateContainer, styles.rightAligned]}>
@@ -65,7 +97,7 @@ const ProcessingScreen = () => {
                   <Text style={styles.workerTotalPrice}>Time Start: {item.time_start ? item.time_start.split("T").join(" ") : "N/A"}</Text>
                 </View>
                 <View style={[styles.columnContainer, styles.rightAligned]}>
-                  <TouchableOpacity style={styles.startButton}>
+                  <TouchableOpacity style={styles.startButton} onPress={() => handleStart(item)}>
                     <Image source={require('../../assets/images/Done.png')} style={styles.startIcon} />
                     <Text style={styles.startText}>Done</Text>
                   </TouchableOpacity>
