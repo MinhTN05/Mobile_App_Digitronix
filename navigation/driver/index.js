@@ -6,6 +6,7 @@ import { Image } from 'react-native';
 
 import DeliveriedStackScreen from './DeliveriedNavigation';
 import OnDeliverStackScreen from './OnDeliverNavigation';
+import MapStackScreen from './MapNavigation';
 
 
 const Tab = createBottomTabNavigator();
@@ -22,6 +23,13 @@ const MyTabsDriver = () => {
               return (
                 <Image
                   source={focused ? require('../../assets/images/Van_2.png') : require('../../assets/images/Van_1.png')}
+                  style={{ width: 24, height: 24 }}
+                />
+              );
+              case 'Map':
+              return (
+                <Image
+                  source={focused ? require('../../assets/images/Map Marker_2.png') : require('../../assets/images/Map Marker_1.png')}
                   style={{ width: 24, height: 24 }}
                 />
               );
@@ -54,6 +62,7 @@ const MyTabsDriver = () => {
       })}
     >
       <Tab.Screen name="Driver" component={DeliveriedStackScreen} options={{ title: 'Deliveried' }} />
+      <Tab.Screen name="Map" component={MapStackScreen} options={{ title: 'Map' }} />
       <Tab.Screen name="History" component={OnDeliverStackScreen} options={{ title: 'On Deliver' }} />
     </Tab.Navigator>
   )

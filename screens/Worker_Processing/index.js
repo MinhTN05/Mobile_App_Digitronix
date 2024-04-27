@@ -4,7 +4,6 @@ import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
 import { fetchWorker } from '../../store/slices/worker';
 import { useDispatch, useSelector } from 'react-redux';
-import DateTimePicker from '@react-native-community/datetimepicker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ProcessingScreen = () => {
@@ -12,11 +11,9 @@ const ProcessingScreen = () => {
   const dispatch = useDispatch();
   const workerData = useSelector(state => state.Worker.items);
   const [filteredWorker, setFilteredWorker] = useState([]);
-  const [statusFilter, setStatusFilter] = useState("processing"); // State để lưu trữ trạng thái bạn muốn lọc
+  const [statusFilter, setStatusFilter] = useState("processing");// State để lưu trữ trạng thái bạn muốn lọc
 
   const [date, setDate] = useState(new Date());
-  const [showDatePicker, setShowDatePicker] = useState(false);
-  const [showTimePicker, setShowTimePicker] = useState(false);
 
   useEffect(() => {
     dispatch(fetchWorker());
@@ -26,7 +23,7 @@ const ProcessingScreen = () => {
     const fetchUserId = async () => {
       try {
         const userId = await AsyncStorage.getItem('user_id');
-        const filtered = workerData.filter(worker => worker.user_id == userId && worker.status === statusFilter); // Lọc dữ liệu theo trạng thái
+        const filtered = workerData.filter(worker => worker.user_id == userId && worker.status == statusFilter);
         setFilteredWorker(filtered);
       } catch (error) {
         console.error("Error fetching userId from AsyncStorage:", error);
@@ -44,47 +41,15 @@ const ProcessingScreen = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const onChangeDate = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShowDatePicker(false);
-    setDate(currentDate);
-  };
-
-  const onChangeTime = (event, selectedTime) => {
-    const currentTime = selectedTime || date;
-    setShowTimePicker(false);
-    setDate(currentTime);
-  };
-
   return (
     <View style={styles.container}>
       <View style={[styles.dateContainer, styles.rightAligned]}>
-        <TouchableOpacity onPress={() => setShowDatePicker(true)}>
+        <View>
           <Text style={styles.dateText}>Date: {date.toDateString()}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => setShowTimePicker(true)}>
+        </View>
+        <View>
           <Text style={styles.timeText}>Time: {date.toLocaleTimeString()}</Text>
-        </TouchableOpacity>
-        {showDatePicker && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            value={date}
-            mode="date"
-            is24Hour={true}
-            display="default"
-            onChange={onChangeDate}
-          />
-        )}
-        {showTimePicker && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            value={date}
-            mode="time"
-            is24Hour={true}
-            display="default"
-            onChange={onChangeTime}
-          />
-        )}
+        </View>
       </View>
       <FlatList
         data={filteredWorker}
@@ -97,11 +62,12 @@ const ProcessingScreen = () => {
                   <Text style={styles.workerStatus}>Status: {item.status}</Text>
                   <Text style={styles.workerTotalPrice}>In material quantity: {item.in_material_quantity}</Text>
                   <Text style={styles.workerTotalPrice}>Out quantity: {item.out_quantity}</Text>
+                  <Text style={styles.workerTotalPrice}>Time Start: {item.time_start ? item.time_start.split("T").join(" ") : "N/A"}</Text>
                 </View>
                 <View style={[styles.columnContainer, styles.rightAligned]}>
                   <TouchableOpacity style={styles.startButton}>
-                    <Image source={require('../../assets/images/Start.png')} style={styles.startIcon} />
-                    <Text style={styles.startText}>Start</Text>
+                    <Image source={require('../../assets/images/Done.png')} style={styles.startIcon} />
+                    <Text style={styles.startText}>Done</Text>
                   </TouchableOpacity>
                 </View>
               </View>

@@ -4,7 +4,6 @@ import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
 import { fetchWorker } from '../../store/slices/worker';
 import { useDispatch, useSelector } from 'react-redux';
-import DateTimePicker from '@react-native-community/datetimepicker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const DoneScreen = () => {
@@ -15,8 +14,6 @@ const DoneScreen = () => {
   const [statusFilter, setStatusFilter] = useState("done"); // State để lưu trữ trạng thái bạn muốn lọc
 
   const [date, setDate] = useState(new Date());
-  const [showDatePicker, setShowDatePicker] = useState(false);
-  const [showTimePicker, setShowTimePicker] = useState(false);
 
   useEffect(() => {
     dispatch(fetchWorker());
@@ -44,47 +41,15 @@ const DoneScreen = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const onChangeDate = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShowDatePicker(false);
-    setDate(currentDate);
-  };
-
-  const onChangeTime = (event, selectedTime) => {
-    const currentTime = selectedTime || date;
-    setShowTimePicker(false);
-    setDate(currentTime);
-  };
-
   return (
     <View style={styles.container}>
       <View style={[styles.dateContainer, styles.rightAligned]}>
-        <TouchableOpacity onPress={() => setShowDatePicker(true)}>
+        <View>
           <Text style={styles.dateText}>Date: {date.toDateString()}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => setShowTimePicker(true)}>
+        </View>
+        <View>
           <Text style={styles.timeText}>Time: {date.toLocaleTimeString()}</Text>
-        </TouchableOpacity>
-        {showDatePicker && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            value={date}
-            mode="date"
-            is24Hour={true}
-            display="default"
-            onChange={onChangeDate}
-          />
-        )}
-        {showTimePicker && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            value={date}
-            mode="time"
-            is24Hour={true}
-            display="default"
-            onChange={onChangeTime}
-          />
-        )}
+        </View>
       </View>
       <FlatList
         data={filteredWorker}
@@ -97,13 +62,15 @@ const DoneScreen = () => {
                   <Text style={styles.workerStatus}>Status: {item.status}</Text>
                   <Text style={styles.workerTotalPrice}>In material quantity: {item.in_material_quantity}</Text>
                   <Text style={styles.workerTotalPrice}>Out quantity: {item.out_quantity}</Text>
+                  <Text style={styles.workerTotalPrice}>Time Start: {item.time_start ? item.time_start.split("T").join(" ") : "N/A"}</Text>
+                  <Text style={styles.workerTotalPrice}>Time End: {item.time_end ? item.time_end.split("T").join(" ") : "N/A"}</Text>
                 </View>
-                <View style={[styles.columnContainer, styles.rightAligned]}>
+                {/* <View style={[styles.columnContainer, styles.rightAligned]}>
                   <TouchableOpacity style={styles.startButton}>
                     <Image source={require('../../assets/images/Start.png')} style={styles.startIcon} />
                     <Text style={styles.startText}>Start</Text>
                   </TouchableOpacity>
-                </View>
+                </View> */}
               </View>
             </View>
           </View>

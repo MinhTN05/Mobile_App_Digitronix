@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
 import { fetchWorker } from '../../store/slices/worker';
 import { useDispatch, useSelector } from 'react-redux';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import { updateWorker } from '../../store/slices/worker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ToDoScreen = () => {
@@ -13,10 +13,7 @@ const ToDoScreen = () => {
   const workerData = useSelector(state => state.Worker.items);
   const [filteredWorker, setFilteredWorker] = useState([]);
   const [statusFilter, setStatusFilter] = useState("todo"); // State để lưu trữ trạng thái bạn muốn lọc
-
   const [date, setDate] = useState(new Date());
-  const [showDatePicker, setShowDatePicker] = useState(false);
-  const [showTimePicker, setShowTimePicker] = useState(false);
 
   useEffect(() => {
     dispatch(fetchWorker());
@@ -26,7 +23,7 @@ const ToDoScreen = () => {
     const fetchUserId = async () => {
       try {
         const userId = await AsyncStorage.getItem('user_id');
-        const filtered = workerData.filter(worker => worker.user_id == userId && worker.status === statusFilter); // Lọc dữ liệu theo trạng thái
+        const filtered = workerData.filter(worker => worker.user_id == userId && worker.status == statusFilter); // Lọc dữ liệu theo trạng thái
         setFilteredWorker(filtered);
       } catch (error) {
         console.error("Error fetching userId from AsyncStorage:", error);
@@ -44,47 +41,47 @@ const ToDoScreen = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const onChangeDate = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShowDatePicker(false);
-    setDate(currentDate);
-  };
-
-  const onChangeTime = (event, selectedTime) => {
-    const currentTime = selectedTime || date;
-    setShowTimePicker(false);
-    setDate(currentTime);
+  const handleStart = async (item) => {
+    try {
+      const name = item.name;
+      const id = item.id;
+      const in_material_quantity = item.in_material_quantity;
+      const currentTime = new Date();
+      const formattedDate = currentTime.toISOString().split('T')[0];
+      const formattedTime = currentTime.toLocaleTimeString();
+      const time_start = `${formattedDate} ${formattedTime}`;
+      const status = "processing";
+      const cost = item.cost;
+      const user_id = item.user_id;
+      const process_detail_id = item.process_detail_id;
+      const production_id = item.production_id;
+      const out_quantity = item.out_quantity;
+      dispatch(updateWorker({
+        id,
+        name,
+        in_material_quantity,
+        time_start,
+        status,
+        cost,
+        user_id,
+        process_detail_id,
+        production_id,
+        out_quantity,
+      }));
+    } catch (error) {
+      console.error("Error updating worker:", error);
+    }
   };
 
   return (
     <View style={styles.container}>
       <View style={[styles.dateContainer, styles.rightAligned]}>
-        <TouchableOpacity onPress={() => setShowDatePicker(true)}>
+        <View>
           <Text style={styles.dateText}>Date: {date.toDateString()}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => setShowTimePicker(true)}>
+        </View>
+        <View>
           <Text style={styles.timeText}>Time: {date.toLocaleTimeString()}</Text>
-        </TouchableOpacity>
-        {showDatePicker && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            value={date}
-            mode="date"
-            is24Hour={true}
-            display="default"
-            onChange={onChangeDate}
-          />
-        )}
-        {showTimePicker && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            value={date}
-            mode="time"
-            is24Hour={true}
-            display="default"
-            onChange={onChangeTime}
-          />
-        )}
+        </View>
       </View>
       <FlatList
         data={filteredWorker}
@@ -99,7 +96,7 @@ const ToDoScreen = () => {
                   <Text style={styles.workerTotalPrice}>Out quantity: {item.out_quantity}</Text>
                 </View>
                 <View style={[styles.columnContainer, styles.rightAligned]}>
-                  <TouchableOpacity style={styles.startButton}>
+                  <TouchableOpacity style={styles.startButton} onPress={() => handleStart(item)}>
                     <Image source={require('../../assets/images/Start.png')} style={styles.startIcon} />
                     <Text style={styles.startText}>Start</Text>
                   </TouchableOpacity>
