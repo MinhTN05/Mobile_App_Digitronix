@@ -36,7 +36,21 @@ const DeliveryService = {
                 }
             });
         });
-    }
+    },
+    updateDeliveryDetails(id, { delivery_date, status, order_id }) {
+        console.log(id, delivery_date, status, order_id);
+        return AsyncStorage.getItem('access_token').then(token => {
+            return api.call().put(`deliveries/${id}`, {
+                delivery_date, 
+                status, 
+                order_id
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+        });
+    },
 };
 
 export default DeliveryService;

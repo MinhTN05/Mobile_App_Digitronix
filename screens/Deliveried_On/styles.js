@@ -1,11 +1,52 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { COLORS } from '../../contains';
+
+const screenWidth = Dimensions.get('window').width;
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    alignItems:'center',
-    top: 20
+    padding: 10,
+    backgroundColor: COLORS.backgroundColor,
+  },
+  deliveryContainer: {
+    backgroundColor: COLORS.white,
+    borderWidth: 1,
+    borderColor: COLORS.black,
+    borderRadius: 0,
+    marginBottom: 15,
+    top: 10
+  },
+  delivery: {
+    flexDirection: 'row',
+    padding: 10,
+    alignItems: 'center',
+  },
+  deliveryInfo: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 5,
+    padding: 10,
+    marginBottom: 10,
+  },
+  deliveryName: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginBottom: 5,
+    color: COLORS.text,
+  },
+  deliveryStatusQuantityContainer: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+  },
+  deliveryStatus: {
+    fontSize: 18,
+    color: COLORS.textPrice,
+  },
+  deliveryQuantity: {
+    fontSize: 18,
+    color: COLORS.text,
   },
   row: {
     flexDirection: 'row',
@@ -14,7 +55,7 @@ export default StyleSheet.create({
     paddingHorizontal: 5,
     width: '95%',
     borderWidth: 1,
-    borderColor: COLORS.boder, 
+    borderColor: COLORS.boder,
     borderRadius: 5,
     padding: 10,
     marginBottom: 20,
@@ -27,23 +68,13 @@ export default StyleSheet.create({
   },
   text: {
     fontSize: 18,
-    fontWeight: 'bold',
     marginBottom: 5,
     color: COLORS.text,
-    fontFamily: 'Arial',
   },
   texttext: {
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 5,
     color: COLORS.text,
-    fontFamily: 'Arial',
-  },
-  row2: {
-    paddingHorizontal: 5,
-    borderWidth: 1,
-    borderColor: COLORS.black, 
-    padding: 10,
-    marginBottom: 20,
   },
 });

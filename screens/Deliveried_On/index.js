@@ -1,80 +1,60 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
-import { COLORS } from '../../contains';
+import { View, Text, FlatList } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import { fetchDeliveries } from '../../store/slices/delivery';
+import { useDispatch, useSelector } from 'react-redux';
 
 const DeliveriedOnchedulesScreen = () => {
-  const [date, setDate] = useState(new Date());
-  const [showDatePicker, setShowDatePicker] = useState(false);
-  const [showTimePicker, setShowTimePicker] = useState(false);
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const deliveryData = useSelector(state => state.Delivery.item);
+  const [filteredDeliverys, setFilteredDeliverys] = useState([]);
+  const [statusFilter, setStatusFilter] = useState(true);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setDate(new Date());
-    }, 1000);
+    dispatch(fetchDeliveries());
+  }, [dispatch]);
 
-    return () => clearInterval(interval);
-  }, []);
+  useEffect(() => {
+    const fetchUserId = async () => {
+      try {
+        const filtered = deliveryData.filter(delivery => delivery.status === statusFilter); // Lọc dữ liệu theo trạng thái
+        setFilteredDeliverys(filtered);
+      } catch (error) {
+        console.error("Error fetching userId from AsyncStorage:", error);
+      }
+    };
 
-  const onChangeDate = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShowDatePicker(false);
-    setDate(currentDate);
-  };
-
-  const onChangeTime = (event, selectedTime) => {
-    const currentTime = selectedTime || date;
-    setShowTimePicker(false);
-    setDate(currentTime);
-  };
+    fetchUserId();
+  }, [deliveryData, statusFilter]);
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.row}>
-        <View style={styles.column}>
+      <FlatList
+        data={filteredDeliverys}
+        renderItem={({ item }) => (
           <View>
-            <Text style={styles.text}>OrderId: 123</Text>
+            <View style={styles.deliveryContainer}>
+              <View style={styles.delivery}>
+                <View style={styles.deliveryInfo}>
+                  <View style={styles.column}>
+                    <Text style={styles.deliveryName}>Id: {item.id}</Text>
+                    <View style={styles.deliveryStatusQuantityContainer}>
+                      <Text style={styles.deliveryStatus}>Status: {item.status ? "true" : "false"}</Text>
+                      <View>
+                        <Text style={styles.text}>Delivery Date: {item.delivery_date}</Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              {/* {renderTrashIcon()} */}
+            </View>
           </View>
-          <View>
-            <Text style={styles.text}>Customer: Mr. Bú</Text>
-          </View>
-          <TouchableOpacity onPress={() => setShowDatePicker(true)}>
-            <Text style={styles.text}>Date: {date.toDateString()}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => setShowTimePicker(true)}>
-          <Text style={styles.text}>Time: {date.toLocaleTimeString()}</Text>
-        </TouchableOpacity>
-        {showDatePicker && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            value={date}
-            mode="date"
-            is24Hour={true}
-            display="default"
-            onChange={onChangeDate}
-          />
         )}
-        {showTimePicker && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            value={date}
-            mode="time"
-            is24Hour={true}
-            display="default"
-            onChange={onChangeTime}
-          />
-        )}
-        </View>
-        <View style={styles.column}>
-          <View style={styles.row2}>
-            <Text style={styles.texttext}>Report</Text>
-          </View>
-          <View style={styles.row2}>
-            <Text style={styles.texttext}>Done</Text>
-          </View>
-        </View>
-      </TouchableOpacity>
+        keyExtractor={deliveries => deliveries.id.toString()}
+      />
     </View>
   );
 };

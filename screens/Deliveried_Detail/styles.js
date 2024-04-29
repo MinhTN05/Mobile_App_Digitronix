@@ -5,9 +5,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.backgroundColor,
+    justifyContent: 'center'
   },
   detailContainer: {
-    top: 20,
     left: 10,
     marginBottom: 20,
     width: '100%',
@@ -20,7 +20,13 @@ const styles = StyleSheet.create({
   orderResponse1: {
     flexDirection: 'row', // Đặt các phần tử con cùng hàng với nhau
     alignItems: 'center', // Căn chỉnh các phần tử theo chiều dọc
-    marginBottom: 15, // Tăng khoảng cách giữa các hàng
+    marginBottom: 15,
+    justifyContent: 'center',
+    borderWidth: 1, // Thêm độ rộng khung viền
+    borderColor: COLORS.borderColor, // Màu của khung viền
+    borderRadius: 5, // Độ cong của góc khung viền
+    width: '40%',
+    alignSelf: 'center',
   },
   detailLabel: {
     fontWeight: 'bold',

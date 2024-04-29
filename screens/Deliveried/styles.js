@@ -9,37 +9,13 @@ export default StyleSheet.create({
     padding: 10,
     backgroundColor: COLORS.backgroundColor,
   },
-  searchContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  searchInput: {
-    flex: 1,
-    backgroundColor: COLORS.backgroundSearch,
-    borderWidth: 1,
-    borderColor: COLORS.black,
-    borderRadius: 5,
-    padding: 10,
-    marginRight: 10,
-    position: 'relative',
-  },
-  searchIcon: {
-    width: 24,
-    height: 24,
-    marginRight: 5,
-  },
-  searchIconPosition: {
-    position: 'absolute',
-    right: 10,
-    transform: [{ translateY: -12 }],
-  },
   deliveryContainer: {
     backgroundColor: COLORS.white,
     borderWidth: 1,
     borderColor: COLORS.black,
     borderRadius: 0,
     marginBottom: 15,
+    top: 10
   },
   delivery: {
     flexDirection: 'row',
@@ -58,8 +34,7 @@ export default StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     marginBottom: 5,
-    color: COLORS.text,
-    fontFamily: 'Arial',
+    color: COLORS.text
   },
   deliveryStatusQuantityContainer: {
     flexDirection: 'column',
@@ -68,12 +43,10 @@ export default StyleSheet.create({
   deliveryStatus: {
     fontSize: 18,
     color: COLORS.textPrice,
-    fontFamily: 'Arial',
   },
   deliveryQuantity: {
     fontSize: 18,
     color: COLORS.text,
-    fontFamily: 'Arial',
   },
   row: {
     flexDirection: 'row',
@@ -97,14 +70,12 @@ export default StyleSheet.create({
     fontSize: 18,
     marginBottom: 5,
     color: COLORS.text,
-    fontFamily: 'Arial',
   },
   texttext: {
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 5,
     color: COLORS.text,
-    fontFamily: 'Arial',
   },
   row2: {
     paddingHorizontal: 5,

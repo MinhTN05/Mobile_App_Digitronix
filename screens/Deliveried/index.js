@@ -4,15 +4,15 @@ import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
 import { fetchDeliveries } from '../../store/slices/delivery';
 import { useDispatch, useSelector } from 'react-redux';
+import { updateDelivery } from '../../store/slices/delivery';
 import Communications from 'react-native-communications';
 
 const DeliveriedchedulesScreen = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const deliveryData = useSelector(state => state.Delivery.item);
-  const [searchKeyword, setSearchKeyword] = useState('');
   const [filteredDeliverys, setFilteredDeliverys] = useState([]);
-
+  const [statusFilter, setStatusFilter] = useState(false);
   const [date, setDate] = useState(new Date());
   const [showOptions, setShowOptions] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -23,31 +23,29 @@ const DeliveriedchedulesScreen = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (searchKeyword.trim() === '') {
-      setFilteredDeliverys(deliveryData);
-    } else {
-      const filtered = deliveryData.filter(delivery =>
-        delivery.name.toLowerCase().includes(searchKeyword.toLowerCase())
-      );
-      setFilteredDeliverys(filtered);
-    }
-  }, [searchKeyword, deliveryData]);
+    const fetchUserId = async () => {
+      try {
+        const filtered = deliveryData.filter(delivery => delivery.status === statusFilter); // Lọc dữ liệu theo trạng thái
+        setFilteredDeliverys(filtered);
+      } catch (error) {
+        console.error("Error fetching userId from AsyncStorage:", error);
+      }
+    };
+
+    fetchUserId();
+  }, [deliveryData, statusFilter]);
 
   const handleDeliveryPress = (id) => {
     navigation.push('DeliveriedDetailsScreen', { id: id });
   };
 
-  const handlePress = () => {
-    navigation.push('DeliveriedDetailsScreen', {});
-  };
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setDate(new Date());
+  //   }, 1000);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setDate(new Date());
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   const toggleOptions = () => {
     setShowOptions(!showOptions);
@@ -67,7 +65,6 @@ const DeliveriedchedulesScreen = () => {
 
   const handleSend = (id) => {
     if (isOptionSelected) {
-      console.log("Option selected:", selectedOption);
       // Gọi hàm sendSMS với nội dung và số điện thoại tương ứng
       const phoneNumber = '0829981539';
       let message = ''; // Chuỗi tin nhắn mặc định
@@ -92,22 +89,28 @@ const DeliveriedchedulesScreen = () => {
     }
   };
 
+  const handleStart = async (item) => {
+    try {
+      const id = item.id;
+      const currentTime = new Date();
+      const formattedDate = currentTime.toISOString().split('T')[0];
+      const formattedTime = currentTime.toLocaleTimeString();
+      const delivery_date = `${formattedDate} ${formattedTime}`;
+      const status = true;
+      const order_id = item.orderResponse.id;
+      dispatch(updateDelivery({
+        id,
+        delivery_date,
+        status,
+        order_id
+      }));
+    } catch (error) {
+      console.error("Error updating worker:", error);
+    }
+  };
+
   return (
     <View style={styles.container}>
-      <View style={styles.searchContainer}>
-        <TextInput
-          style={styles.searchInput}
-          placeholder="Search by Delivery Name"
-          onChangeText={text => setSearchKeyword(text)}
-          value={searchKeyword}
-        />
-        <TouchableOpacity onPress={() => console.log('Search icon pressed')}>
-          <Image
-            source={require('../../assets/images/Search.png')}
-            style={[styles.searchIcon, styles.searchIconPosition]}
-          />
-        </TouchableOpacity>
-      </View>
       <FlatList
         data={filteredDeliverys}
         renderItem={({ item }) => (
@@ -118,8 +121,8 @@ const DeliveriedchedulesScreen = () => {
                   <View style={styles.column}>
                     <Text style={styles.deliveryName}>Id: {item.id}</Text>
                     <View style={styles.deliveryStatusQuantityContainer}>
-                      <Text style={styles.deliveryStatus}>Status: {item.status}</Text>
-                      <Text style={styles.deliveryQuantity}>Order: {item.order_id}</Text>
+                      <Text style={styles.deliveryStatus}>Status: {item.status ? "true" : "false"}</Text>
+                      <Text style={styles.deliveryStatus}>Order Response: {item.orderResponse.id}</Text>
                       <View>
                         <Text style={styles.text}>Date: {date.toDateString()}</Text>
                       </View>
@@ -176,7 +179,7 @@ const DeliveriedchedulesScreen = () => {
                         </View>
                       </TouchableOpacity>
                     </Modal>
-                    <TouchableOpacity style={styles.row2}>
+                    <TouchableOpacity style={styles.row2} onPress={() => handleStart(item)}>
                       <Text style={styles.texttext}>Done</Text>
                     </TouchableOpacity>
                   </View>

@@ -61,9 +61,9 @@ const MyTabsDriver = () => {
         headerShown: false
       })}
     >
-      <Tab.Screen name="Driver" component={DeliveriedStackScreen} options={{ title: 'Deliveried' }} />
+      <Tab.Screen name="Driver" component={DeliveriedStackScreen} options={{ title: 'On Deliver' }} />
       <Tab.Screen name="Map" component={MapStackScreen} options={{ title: 'Map' }} />
-      <Tab.Screen name="History" component={OnDeliverStackScreen} options={{ title: 'On Deliver' }} />
+      <Tab.Screen name="History" component={OnDeliverStackScreen} options={{ title: 'Deliveried' }} />
     </Tab.Navigator>
   )
 }

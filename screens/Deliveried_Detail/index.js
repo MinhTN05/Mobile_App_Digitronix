@@ -1,39 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity, Linking } from 'react-native';
 import styles from './styles';
 import DeliveryService from '../../services/delivery';
 import { useDispatch } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-// import MapView, { Marker } from 'react-native-maps';
-// import * as Location from 'expo-location';
 
 const DeliveriedDetailsScreen = ({ route, navigation }) => {
   const { id } = route.params;
   const [deliveryDetails, setDeliveryDetails] = useState(null);
   const [access_token, setAccessToken] = useState("");
   const dispatch = useDispatch();
-  // const [location, setLocation] = useState(null);
-  // const [errorMsg, setErrorMsg] = useState(null);
-  // const [isLocationLoaded, setIsLocationLoaded] = useState(false);
-
-  // useEffect(() => {
-  //   (async () => {
-  //     let { status } = await Location.requestForegroundPermissionsAsync();
-  //     if (status !== 'granted') {
-  //       setErrorMsg('Permission to access location was denied');
-  //       return;
-  //     }
-
-  //     try {
-  //       let currentLocation = await Location.getCurrentPositionAsync({});
-  //       setLocation(currentLocation);
-  //       setIsLocationLoaded(true);
-  //     } catch (error) {
-  //       console.error('Lỗi khi lấy vị trí hiện tại:', error);
-  //       setErrorMsg('Lỗi khi lấy vị trí hiện tại');
-  //     }
-  //   })();
-  // }, []);
 
   useEffect(() => {
     DeliveryService.getDeliveryDetail(id)
@@ -56,6 +32,14 @@ const DeliveriedDetailsScreen = ({ route, navigation }) => {
     fetchAccessToken();
   }, [id]);
 
+  const openMaps = () => {
+    if (deliveryDetails && deliveryDetails.orderResponse && deliveryDetails.orderResponse.customerAddress) {
+      const address = deliveryDetails.orderResponse.customerAddress;
+      const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+      Linking.openURL(url);
+    }
+  };
+
   return (
     <View style={styles.container}>
       {deliveryDetails ? (
@@ -66,37 +50,32 @@ const DeliveriedDetailsScreen = ({ route, navigation }) => {
               <Text style={styles.detailText}>{deliveryDetails.orderResponse.customer_name}</Text>
             </View>
             <View style={styles.orderResponse}>
+              <Text style={styles.detailLabel}>Customer Phone:</Text>
+              <Text style={styles.detailText}>{deliveryDetails.orderResponse.customerPhone}</Text>
+            </View>
+            <View style={styles.orderResponse}>
               <Text style={styles.detailLabel}>Address:</Text>
               <Text style={styles.detailText}>{deliveryDetails.orderResponse.customerAddress}</Text>
             </View>
             <View style={styles.orderResponse}>
-              <Text style={styles.detailLabel}>Thanh tìm kiếm:</Text>
+              <Text style={styles.detailLabel}>Delivery Method:</Text>
+              <Text style={styles.detailText}>{deliveryDetails.orderResponse.delivery_method}</Text>
             </View>
-            {/* <View style={styles.orderResponse1}>
-              {errorMsg ? <Text>{errorMsg}</Text> : null}
-              {isLocationLoaded && location ? (
-                <MapView
-                  style={styles.map}
-                  initialRegion={{
-                    latitude: location.coords.latitude,
-                    longitude: location.coords.longitude,
-                    latitudeDelta: 0.0922,
-                    longitudeDelta: 0.0421,
-                  }}
-                >
-                  <Marker
-                    coordinate={{
-                      latitude: location.coords.latitude,
-                      longitude: location.coords.longitude,
-                    }}
-                    title="Your Location"
-                    description="You are here!"
-                  />
-                </MapView>
-              ) : (
-                <Text style={styles.Loading}>Loading...</Text>
-              )}
-            </View> */}
+            <View style={styles.orderResponse}>
+              <Text style={styles.detailLabel}>Payment Method:</Text>
+              <Text style={styles.detailText}>{deliveryDetails.orderResponse.payment_method}</Text>
+            </View>
+            <View style={styles.orderResponse}>
+              <Text style={styles.detailLabel}>Total Price:</Text>
+              <Text style={styles.detailText}>{deliveryDetails.orderResponse.total_price}</Text>
+            </View>
+            <View style={styles.orderResponse}>
+              <Text style={styles.detailLabel}>Delivery Date:</Text>
+              <Text style={styles.detailText}>{deliveryDetails.delivery_date}</Text>
+            </View>
+            <TouchableOpacity style={styles.orderResponse1} onPress={openMaps}>
+              <Text style={styles.detailLabel}>View the map</Text>
+            </TouchableOpacity>
           </View>
         </>
       ) : (
