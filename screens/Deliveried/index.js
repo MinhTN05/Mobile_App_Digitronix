@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Image, TextInput, Modal } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
-import DateTimePicker from '@react-native-community/datetimepicker';
 import { fetchDeliveries } from '../../store/slices/delivery';
 import { useDispatch, useSelector } from 'react-redux';
+import Communications from 'react-native-communications';
 
 const DeliveriedchedulesScreen = () => {
   const navigation = useNavigation();
@@ -14,8 +14,6 @@ const DeliveriedchedulesScreen = () => {
   const [filteredDeliverys, setFilteredDeliverys] = useState([]);
 
   const [date, setDate] = useState(new Date());
-  const [showDatePicker, setShowDatePicker] = useState(false);
-  const [showTimePicker, setShowTimePicker] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [isOptionSelected, setIsOptionSelected] = useState(false);
@@ -51,18 +49,6 @@ const DeliveriedchedulesScreen = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const onChangeDate = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShowDatePicker(false);
-    setDate(currentDate);
-  };
-
-  const onChangeTime = (event, selectedTime) => {
-    const currentTime = selectedTime || date;
-    setShowTimePicker(false);
-    setDate(currentTime);
-  };
-
   const toggleOptions = () => {
     setShowOptions(!showOptions);
   };
@@ -72,9 +58,34 @@ const DeliveriedchedulesScreen = () => {
     setIsOptionSelected(true);
   };
 
-  const handleSend = () => {
+  const sendSMS = (phoneNumber, message) => {
+    Communications.text(
+      phoneNumber,
+      message
+    );
+  };
+
+  const handleSend = (id) => {
     if (isOptionSelected) {
       console.log("Option selected:", selectedOption);
+      // Gọi hàm sendSMS với nội dung và số điện thoại tương ứng
+      const phoneNumber = '0829981539';
+      let message = ''; // Chuỗi tin nhắn mặc định
+      switch (selectedOption) {
+        case 'Không nghe máy':
+          message = `Order_${id}_Message_Customer_don't_answer`;
+          break;
+        case 'Hủy đơn hàng':
+          message = `Order_${id}_Message_Customer_don't_receive_the_order`;
+          break;
+        case 'Khác...':
+          message = 'Other...';
+          break;
+        default:
+          break;
+      }
+      // Gửi tin nhắn
+      sendSMS(phoneNumber, message);
       setShowOptions(false);
     } else {
       console.log("Bạn hãy lựa chọn.");
@@ -159,7 +170,7 @@ const DeliveriedchedulesScreen = () => {
                           >
                             <Text style={styles.optionText}>Other...</Text>
                           </TouchableOpacity>
-                          <TouchableOpacity style={[styles.option, styles.sendOption]} onPress={handleSend}>
+                          <TouchableOpacity style={[styles.option, styles.sendOption]} onPress={handleSend(item.id)}>
                             <Text style={[styles.optionText, styles.sendText]}>Sent</Text>
                           </TouchableOpacity>
                         </View>
