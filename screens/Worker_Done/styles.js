@@ -34,7 +34,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 5,
     color: COLORS.text,
-    fontFamily: 'Arial',
+    // fontFamily: 'Arial',
   },
   input: {
     borderWidth: 1,
@@ -65,14 +65,14 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 5,
     color: COLORS.text,
-    fontFamily: 'Arial',
+    // fontFamily: 'Arial',
   },
   timeText: {
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 5,
     color: COLORS.text,
-    fontFamily: 'Arial',
+    // fontFamily: 'Arial',
   },
   textContainer: {
     borderWidth: 2,
@@ -110,7 +110,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 5,
     color: COLORS.text,
-    fontFamily: 'Arial',
+    // fontFamily: 'Arial',
   },
   workerStatusPriceContainer: {
     flexDirection: 'column',
@@ -119,11 +119,11 @@ export default StyleSheet.create({
   workerStatus: {
     fontSize: 18,
     color: COLORS.textPrice,
-    fontFamily: 'Arial',
+    // fontFamily: 'Arial',
   },
   workerTotalPrice: {
     fontSize: 18,
     color: COLORS.text,
-    fontFamily: 'Arial',
+    // fontFamily: 'Arial',
   },
 });

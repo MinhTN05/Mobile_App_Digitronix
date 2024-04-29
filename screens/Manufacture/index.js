@@ -21,7 +21,7 @@ const ManufactureScreen = () => {
             setFilteredProductions(productionData);
         } else {
             const filtered = productionData.filter(production =>
-                production.name.toLowerCase().includes(searchKeyword.toLowerCase())
+                production.product_name.toLowerCase().includes(searchKeyword.toLowerCase())
             );
             setFilteredProductions(filtered);
         }

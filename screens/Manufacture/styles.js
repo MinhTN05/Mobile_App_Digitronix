@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 5,
     color: COLORS.text,
-    fontFamily: 'Arial',
+    // fontFamily: 'Arial',
   },
   productionStatusQuantityContainer: {
     flexDirection: 'column',
@@ -62,12 +62,12 @@ const styles = StyleSheet.create({
   productionStatus: {
     fontSize: 18,
     color: COLORS.textPrice,
-    fontFamily: 'Arial',
+    // fontFamily: 'Arial',
   },
   productionQuantity: {
     fontSize: 18,
     color: COLORS.text,
-    fontFamily: 'Arial',
+    // fontFamily: 'Arial',
   },
   trashIcon: {
     width: 20,

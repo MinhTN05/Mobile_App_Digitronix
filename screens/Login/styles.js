@@ -18,9 +18,9 @@ const styles = StyleSheet.create({
         height: 'auto'
     },
     logo1: {
-        width: 147,
-        height: 109,
-        top: 120
+        width: 120,
+        height: 100,
+        top: 60
     },
     input: {
         shadowColor: '#000',

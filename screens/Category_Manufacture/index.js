@@ -53,7 +53,7 @@ const CategoryManufactureScreen = ({ route, navigation }) => {
                     </View>
                     <View style={styles.buttonContainer}>
                         <TouchableOpacity onPress={navigateBack} style={[styles.button, styles.backButton]}>
-                            <Text style={styles.buttonText}>Quay lại</Text>
+                            <Text style={styles.buttonText}>Back</Text>
                             <Image source={require('../../assets/images/back.png')} style={styles.buttonIcon} />
                         </TouchableOpacity>
                     </View>

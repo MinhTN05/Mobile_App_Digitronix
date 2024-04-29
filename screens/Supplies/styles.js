@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 5,
     color: COLORS.text,
-    fontFamily: 'Arial',
+    // fontFamily: 'Arial',
   },
   productPriceQuantityContainer: {
     flexDirection: 'column',
@@ -63,12 +63,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginRight: 10,
     color: COLORS.textPrice,
-    fontFamily: 'Arial',
+    // fontFamily: 'Arial',
   },
   productQuantity: {
     fontSize: 18,
     color: COLORS.text,
-    fontFamily: 'Arial',
+    // fontFamily: 'Arial',
   },
   trashIcon: {
     width: 20,

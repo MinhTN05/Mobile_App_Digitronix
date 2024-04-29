@@ -21,15 +21,25 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     orderDetailResponses: {
+        marginTop: 10,
         flexDirection: 'row',
         marginBottom: 15,
         alignItems: 'center',
-        width: '100%',
+        width: '150%',
     },
     detailLabel: {
         fontWeight: 'bold',
         marginRight: 10, // Tăng khoảng cách giữa nhãn và nội dung
         fontSize: 18,
+    },
+    detailLabel1: {
+        marginRight: 10, // Tăng khoảng cách giữa nhãn và nội dung
+        fontSize: 18,
+    },
+    orderDetailResponse: {
+        flexDirection: 'column',
+        marginBottom: 15,
+        width: '100%',
     },
     detailText: {
         flex: 1,

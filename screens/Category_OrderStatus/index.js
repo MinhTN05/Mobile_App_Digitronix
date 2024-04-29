@@ -80,18 +80,20 @@ const CategoryOrderStatusScreen = ({ route, navigation }) => {
                         </View>
                         <View style={styles.orderDetail}>
                             <Text style={styles.detailLabel}>Order Detail Responses:</Text>
-                            {orderDetails.orderDetailResponses.map((orderDetailResponses, index) => (
-                                <View key={index} style={styles.orderDetailResponses}>
-                                    <Text style={styles.detailLabel}>Quantity: {orderDetailResponses.quantity}</Text>
-                                    <Text style={styles.detailLabel}>Created At: {orderDetailResponses.created_at}</Text>
-                                    <Text style={styles.detailLabel}>Updated At: {orderDetailResponses.updated_at}</Text>
+                        </View>
+                        <View style={styles.orderDetailResponses}>
+                            {orderDetails.orderDetailResponses.map((orderDetailResponse, index) => (
+                                <View key={index} style={styles.orderDetailResponse}>
+                                    <Text style={styles.detailLabel1}>Quantity: {orderDetailResponse.quantity}</Text>
+                                    <Text style={styles.detailLabel1}>Created At: {orderDetailResponse.created_at.split("T").join(" ")}</Text>
+                                    <Text style={styles.detailLabel1}>Updated At: {orderDetailResponse.updated_at.split("T").join(" ")}</Text>
                                 </View>
                             ))}
                         </View>
                     </View>
                     <View style={styles.buttonContainer}>
                         <TouchableOpacity onPress={navigateBack} style={[styles.button, styles.backButton]}>
-                            <Text style={styles.buttonText}>Quay lại</Text>
+                            <Text style={styles.buttonText}>Back</Text>
                             <Image source={require('../../assets/images/back.png')} style={styles.buttonIcon} />
                         </TouchableOpacity>
                     </View>
