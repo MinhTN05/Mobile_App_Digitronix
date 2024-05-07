@@ -47,7 +47,7 @@ const CategoryProductScreen = ({ route, navigation }) => {
                 <>
                     {productDetails ? (
                         <Image source={{
-                            uri: `${`http://192.168.1.14:1702/api/v1/products/images/${productDetails.img}`}`
+                            uri: `${`http://192.168.1.3:1702/api/v1/products/images/${productDetails.img}`}`
                         }} style={styles.image} />
                     ) : (
                         <Text>No image available</Text>
@@ -79,9 +79,11 @@ const CategoryProductScreen = ({ route, navigation }) => {
                         </View>
                         <View style={styles.productDetail}>
                             <Text style={styles.detailLabel}>Tags:</Text>
-                            {productDetails.tags.map((tags, index) => {
-                                return <Text key={index} style={styles.detailText}>{tags.name}</Text>
-                            })}
+                            <View style={styles.tagContainer}>
+                                {productDetails.tags.map((tags, index) => {
+                                    return <Text key={index} style={styles.tagText}>- {tags.name}</Text>;
+                                })}
+                            </View>
                         </View>
                     </View>
                     <View style={styles.buttonContainer}>

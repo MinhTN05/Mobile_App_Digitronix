@@ -69,12 +69,29 @@ const styles = StyleSheet.create({
     color: COLORS.text,
     // fontFamily: 'Arial',
   },
+  productTag: {
+    fontSize: 18,
+    color: COLORS.text,
+    fontWeight: 'bold',
+    marginBottom: 5,
+    // fontFamily: 'Arial',
+  },
   trashIcon: {
     width: 20,
     height: 20,
     marginLeft: 'auto',
     marginTop: 30,
     alignItems: 'center',
+  },
+  addProductContainer: {
+    position: 'absolute',
+    bottom: 10,
+    right: 10,
+  },
+  addProduct: {
+    width: 50,
+    height: 50,
+    resizeMode: 'contain', // Đảm bảo hình ảnh không bị vỡ
   },
 });
 

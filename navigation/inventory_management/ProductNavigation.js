@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { ProductScreen, CategoryProductScreen, EditProductScreen } from '../../screens'
+import { ProductScreen, CategoryProductScreen, EditProductScreen, AddProductScreen } from '../../screens'
 import { COLORS } from '../../contains';
 import IconHeader from '../../components/iconHeader';
 
@@ -23,6 +23,7 @@ const ProductStackScreen = () => {
                                                                           )
                                                                           }}/>
       <ProductStack.Screen name="CategoryProductScreen" component={CategoryProductScreen} options={{title : 'Product Information'}}/>
+      <ProductStack.Screen name="AddProductScreen" component={AddProductScreen} options={{title : 'Add Product'}}/>
       <ProductStack.Screen name="EditProductScreen" component={EditProductScreen} options={{title : 'Edit Product'}}/>
     </ProductStack.Navigator>
   );

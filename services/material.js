@@ -15,7 +15,7 @@ const MaterialService = {
         tags
     } = {}) {
         return AsyncStorage.getItem('access_token').then(token => {
-            return api.call().get(`materials/all?page=0&category_id=1&limit=10`, {
+            return api.call().get(`materials/all?page=0&limit=10`, {
                 params: {
                     id,
                     name,

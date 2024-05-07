@@ -24,30 +24,34 @@ const ProductScreen = () => {
             setFilteredProducts(dataProduct.products);
         } else {
             const filtered = dataProduct.products.filter(product =>
-                product.name.toLowerCase().includes(searchKeyword.toLowerCase())
+                product.name.toLowerCase().includes(searchKeyword.toLowerCase().trim())
             );
             setFilteredProducts(filtered);
         }
-    }, [searchKeyword, dataProduct.products]);
+    }, [searchKeyword, dataProduct]);
 
-    const renderTrashIcon = () => {
-        return (
-            <TouchableOpacity onPress={() => console.log('Delete product')}>
-                <Image
-                    source={require('../../assets/images/Delete_1.png')}
-                    style={styles.trashIcon}
-                />
-            </TouchableOpacity>
-        );
-    };
+    // const renderTrashIcon = () => {
+    //     return (
+    //         <TouchableOpacity onPress={() => console.log('Delete product')}>
+    //             <Image
+    //                 source={require('../../assets/images/Delete_1.png')}
+    //                 style={styles.trashIcon}
+    //             />
+    //         </TouchableOpacity>
+    //     );
+    // };
 
-    const handleSearchIconPress = () => {
-        console.log('Search icon pressed');
-    };
+    // const handleSearchIconPress = () => {
+    //     console.log('Search icon pressed');
+    // };
 
     const handleProductPress = (id) => {
         navigation.push('CategoryProductScreen', { id: id });
     };
+
+    // const AddProductPress = () => {
+    //     navigation.push('AddProductScreen');
+    // };
 
     return (
         <View style={styles.container}>
@@ -66,26 +70,40 @@ const ProductScreen = () => {
                 </TouchableOpacity>
             </View>
             <FlatList
+                // style={{maxHeight: '83%'}}
                 data={filteredProducts}
                 renderItem={({ item }) => (
                     <TouchableOpacity onPress={() => handleProductPress(item.id)}>
                         <View style={styles.productContainer}>
                             <View style={styles.product}>
-                            <Image source={item.img} style={styles.productImage} />
                                 <View style={styles.productInfo}>
                                     <Text style={styles.productName}>Name: {item.name}</Text>
                                     <View style={styles.productPriceQuantityContainer}>
                                         <Text style={styles.productPrice}>Price: {item.price}</Text>
                                         <Text style={styles.productQuantity}>Quantity: {item.quantity}</Text>
+                                        <Text style={styles.productTag}>Tags:</Text>
+                                        {item.tags.length > 0 ? (
+                                            item.tags.map((tag, index) => (
+                                                <Text key={index} style={styles.productQuantity}>- {tag.name}</Text>
+                                            ))
+                                        ) : (
+                                            <Text style={styles.productQuantity}>- No data</Text>
+                                        )}
                                     </View>
                                 </View>
-                                {renderTrashIcon()}
+                                {/* {renderTrashIcon()} */}
                             </View>
                         </View>
                     </TouchableOpacity>
                 )}
                 keyExtractor={item => item.id.toString()}
             />
+            {/* <TouchableOpacity style={styles.addProductContainer} onPress={AddProductPress}>
+                <Image
+                    source={require('../../assets/images/Add_1.png')}
+                    style={styles.addProduct}
+                />
+            </TouchableOpacity> */}
         </View>
     );
 }

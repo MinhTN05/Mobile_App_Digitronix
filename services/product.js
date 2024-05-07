@@ -43,6 +43,15 @@ const ProductService = {
             });
         });
     },
+    // add(productData) {
+    //     return AsyncStorage.getItem('access_token').then(token => {
+    //         return api.call().post('products/create/info', productData, {
+    //             headers: {
+    //                 Authorization: `Bearer ${token}`
+    //             }
+    //         });
+    //     });
+    // },
 };
 
 export default ProductService;

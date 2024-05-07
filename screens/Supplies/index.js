@@ -31,35 +31,31 @@ const SuppliesScreen = () => {
         }
     }, [searchKeyword, dataMaterial.materials]);
 
-    // console.log('dataMaterial', dataMaterial);
-
     const handleProductPress = (id) => {
-        navigation.push('CategorySuppliesScreen', {id: id});
+        navigation.push('CategorySuppliesScreen', { id: id });
     }
 
     const handleSearchIconPress = () => {
-        // Do something when search icon is pressed
-        // For example, you can console.log a message
         console.log("Search icon is pressed");
     }
 
-    const renderTrashIcon = () => {
-        return (
-            <TouchableOpacity onPress={() => console.log('Delete product')}>
-                <Image
-                    source={require('../../assets/images/Delete_1.png')}
-                    style={styles.trashIcon}
-                />
-            </TouchableOpacity>
-        );
-    };
+    // const renderTrashIcon = () => {
+    //     return (
+    //         <TouchableOpacity onPress={() => console.log('Delete product')}>
+    //             <Image
+    //                 source={require('../../assets/images/Delete_1.png')}
+    //                 style={styles.trashIcon}
+    //             />
+    //         </TouchableOpacity>
+    //     );
+    // };
 
     return (
         <View style={styles.container}>
             <View style={styles.searchContainer}>
                 <TextInput
                     style={styles.searchInput}
-                    placeholder="Search by Name Product"
+                    placeholder="Search by Material Name"
                     onChangeText={text => setSearchKeyword(text)}
                     value={searchKeyword}
                 />
@@ -81,9 +77,17 @@ const SuppliesScreen = () => {
                                     <View style={styles.productPriceQuantityContainer}>
                                         <Text style={styles.productPrice}>Price: {item.price}</Text>
                                         <Text style={styles.productQuantity}>Quantity: {item.quantity}</Text>
+                                        <Text style={styles.productTag}>Tags:</Text>
+                                        {item.tags.length > 0 ? (
+                                            item.tags.map((tag, index) => (
+                                                <Text key={index} style={styles.productQuantity}>- {tag.name}</Text>
+                                            ))
+                                        ) : (
+                                            <Text style={styles.productQuantity}>- No data</Text>
+                                        )}
                                     </View>
                                 </View>
-                                {renderTrashIcon()}
+                                {/* {renderTrashIcon()} */}
                             </View>
                         </View>
 

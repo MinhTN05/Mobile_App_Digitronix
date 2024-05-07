@@ -29,6 +29,8 @@ import ToDoScreen from "./Worker_TODO";
 
 import MapScreen from "./Map";
 
+import AddProductScreen from "./Add_Product";
+
 export {
     ProductScreen,
     SuppliesScreen,
@@ -50,5 +52,6 @@ export {
     ProcessingScreen,
     DoneScreen,
     ToDoScreen,
-    MapScreen
+    MapScreen,
+    AddProductScreen
 }

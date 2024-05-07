@@ -46,7 +46,7 @@ const CategorySuppliesScreen = ({ route, navigation }) => {
                 <>
                     {materialDetails ? (
                         <Image source={{
-                            uri: `${`http://192.168.1.14:1702/api/v1/materials/images/${materialDetails.image}`}`
+                            uri: `${`http://192.168.1.3:1702/api/v1/materials/images/${materialDetails.image}`}`
                         }} style={styles.image} />
                     ) : (
                         <Text>No image available</Text>
@@ -78,9 +78,11 @@ const CategorySuppliesScreen = ({ route, navigation }) => {
                         </View>
                         <View style={styles.materialDetails}>
                             <Text style={styles.detailLabel}>Tags:</Text>
-                            {materialDetails.tags.map((tags, index) => {
-                                return <Text key={index} style={styles.detailText}>{tags.name}</Text>
-                            })}
+                            <View style={styles.tagContainer}>
+                                {materialDetails.tags.map((tags, index) => {
+                                    return <Text key={index} style={styles.tagText}>- {tags.name}</Text>;
+                                })}
+                            </View>
                         </View>
                     </View>
                     <View style={styles.buttonContainer}>

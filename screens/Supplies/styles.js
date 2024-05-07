@@ -70,6 +70,13 @@ const styles = StyleSheet.create({
     color: COLORS.text,
     // fontFamily: 'Arial',
   },
+  productTag: {
+    fontSize: 18,
+    color: COLORS.text,
+    fontWeight: 'bold',
+    marginBottom: 5,
+    // fontFamily: 'Arial',
+  },
   trashIcon: {
     width: 20,
     height: 20,

@@ -41,6 +41,15 @@ const styles = StyleSheet.create({
         height: 80,
         marginRight: 10, // Tăng khoảng cách giữa hình ảnh và văn bản
     },
+    tagContainer: {
+        flexDirection: 'column',
+        flexWrap: 'wrap',
+    },
+    tagText: {
+        fontSize: 18,
+        marginRight: 5, // Khoảng cách giữa các tag
+        marginBottom: 5, // Khoảng cách dưới của mỗi tag
+    },
     buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
