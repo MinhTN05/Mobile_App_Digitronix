@@ -11,6 +11,7 @@ const MapScreen = () => {
   const [errorMsg, setErrorMsg] = useState(null);
 
   useEffect(() => {
+    //async là hàm xử lý bất đồng bộ
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {

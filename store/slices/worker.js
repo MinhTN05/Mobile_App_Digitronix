@@ -5,7 +5,7 @@ export const fetchWorker = createAsyncThunk(
     'worker/fetchWorker',
     async (data, thunkAPI) => {
         try {
-            const response = await WorkerService.list(data);
+            const response = await WorkerService.listWorker(data);
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);

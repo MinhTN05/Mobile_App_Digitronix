@@ -15,6 +15,7 @@ const ToDoScreen = () => {
   const [statusFilter, setStatusFilter] = useState("todo"); // State để lưu trữ trạng thái bạn muốn lọc
   const [date, setDate] = useState(new Date());
 
+
   useEffect(() => {
     dispatch(fetchWorker());
   }, [dispatch]);
@@ -31,6 +32,7 @@ const ToDoScreen = () => {
     };
 
     fetchUserId();
+
   }, [workerData, statusFilter]);
 
   useEffect(() => {

@@ -16,7 +16,7 @@ const DrawerContent = (props) => {
     const handleLogout = async () => {
         try {
             // Xóa token từ AsyncStorage
-            await AsyncStorage.removeItem('access_token');
+            await AsyncStorage.clear();
             // Xóa tên người dùng
             dispatch(SetUserName(''));
             navigation.navigate('AuthStackScreen');
